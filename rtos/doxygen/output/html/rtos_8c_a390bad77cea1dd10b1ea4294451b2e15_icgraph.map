@@ -1,0 +1,11 @@
+<map id="context_switch" name="context_switch">
+<area shape="rect" id="node2" href="$rtos_8c.html#a601b1c662e8de12a5c4b6f12d2b85f76" title="dispatcher" alt="" coords="163,132,245,159"/>
+<area shape="rect" id="node3" href="$rtos_8h.html#ab057ccfcb6b57d8a5c74698954424a3c" title="Suspends the task calling this function by a certain amount of time specified by the parameter ticks..." alt="" coords="318,56,401,83"/>
+<area shape="rect" id="node8" href="$rtos_8h.html#aea0dd80ed0f0129c49dc95863f43c5dc" title="Suspends the task calling this function. " alt="" coords="293,107,425,133"/>
+<area shape="rect" id="node9" href="$rtos_8h.html#a1e438279e41f08e401c4cbf7bd7e3080" title="Activates the task identified by the task handle. " alt="" coords="296,157,423,184"/>
+<area shape="rect" id="node10" href="$rtos_8c.html#ab5e09814056d617c521549e542639b7e" title="SysTick_Handler" alt="" coords="299,208,419,235"/>
+<area shape="rect" id="node4" href="$rtos__main_8c.html#aaee1153f423af33ef273c0a8046480ac" title="dummy_task1" alt="" coords="473,5,577,32"/>
+<area shape="rect" id="node6" href="$rtos__main_8c.html#a2db4a9cc129f09eb3b63a2f902b3bf79" title="dummy_task2" alt="" coords="473,56,577,83"/>
+<area shape="rect" id="node7" href="$rtos__main_8c.html#a0851438d42bae396442560c8572658ff" title="dummy_task3" alt="" coords="473,107,577,133"/>
+<area shape="rect" id="node5" href="$rtos__main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="625,56,676,83"/>
+</map>

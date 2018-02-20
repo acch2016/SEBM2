@@ -1,0 +1,13 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$rtos_8c.html#a9b85523da77622a323eb372876dfc751" title="Create task API function. " alt="" coords="292,157,411,184"/>
+<area shape="rect" id="node3" href="$rtos__main_8c.html#aaee1153f423af33ef273c0a8046480ac" title="dummy_task1" alt="" coords="122,5,226,32"/>
+<area shape="rect" id="node7" href="$rtos__main_8c.html#a2db4a9cc129f09eb3b63a2f902b3bf79" title="dummy_task2" alt="" coords="122,56,226,83"/>
+<area shape="rect" id="node8" href="$rtos__main_8c.html#a0851438d42bae396442560c8572658ff" title="dummy_task3" alt="" coords="122,107,226,133"/>
+<area shape="rect" id="node9" href="$rtos_8c.html#ac343e700239fe05a50f3b107a185d737" title="Starts the scheduler, from this point the RTOS takes control on the processor. " alt="" coords="104,208,244,235"/>
+<area shape="rect" id="node4" href="$rtos_8c.html#ab057ccfcb6b57d8a5c74698954424a3c" title="Suspends the task calling this function by a certain amount of time specified by the parameter ticks..." alt="" coords="310,56,393,83"/>
+<area shape="rect" id="node5" href="$rtos_8c.html#a601b1c662e8de12a5c4b6f12d2b85f76" title="dispatcher" alt="" coords="459,56,541,83"/>
+<area shape="rect" id="node6" href="$rtos_8c.html#a390bad77cea1dd10b1ea4294451b2e15" title="context_switch" alt="" coords="589,56,699,83"/>
+<area shape="rect" id="node10" href="$rtos_8c.html#a3da6087b2f86fb0fb3e76625949e8f5c" title="init_is_alive" alt="" coords="307,309,395,336"/>
+<area shape="rect" id="node11" href="$rtos_8c.html#aba04d49a0ff5bf5f2f345018999838cf" title="idle_task" alt="" coords="314,208,389,235"/>
+<area shape="rect" id="node12" href="$rtos_8c.html#a1ceb3400b8198a46a5d1a4eac152c3dc" title="reload_systick" alt="" coords="298,259,405,285"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="dummy_task1" name="dummy_task1">
+<area shape="rect" id="node2" href="$rtos_8c.html#ab057ccfcb6b57d8a5c74698954424a3c" title="Suspends the task calling this function by a certain amount of time specified by the parameter ticks..." alt="" coords="157,5,240,32"/>
+<area shape="rect" id="node3" href="$rtos_8c.html#a601b1c662e8de12a5c4b6f12d2b85f76" title="dispatcher" alt="" coords="288,5,371,32"/>
+<area shape="rect" id="node4" href="$rtos_8c.html#a390bad77cea1dd10b1ea4294451b2e15" title="context_switch" alt="" coords="419,5,528,32"/>
+</map>

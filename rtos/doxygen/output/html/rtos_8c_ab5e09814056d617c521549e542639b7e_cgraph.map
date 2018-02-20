@@ -1,0 +1,7 @@
+<map id="SysTick_Handler" name="SysTick_Handler">
+<area shape="rect" id="node2" href="$rtos_8c.html#ae25772d4efa4a8bc45435fde080f1db1" title="refresh_is_alive" alt="" coords="194,5,305,32"/>
+<area shape="rect" id="node3" href="$rtos_8c.html#aa7bb38847695be259e0bdabaa574edaf" title="activate_waiting_tasks" alt="" coords="173,56,325,83"/>
+<area shape="rect" id="node4" href="$rtos_8c.html#a601b1c662e8de12a5c4b6f12d2b85f76" title="dispatcher" alt="" coords="208,107,291,133"/>
+<area shape="rect" id="node6" href="$rtos_8c.html#a1ceb3400b8198a46a5d1a4eac152c3dc" title="reload_systick" alt="" coords="196,157,303,184"/>
+<area shape="rect" id="node5" href="$rtos_8c.html#a390bad77cea1dd10b1ea4294451b2e15" title="context_switch" alt="" coords="373,107,483,133"/>
+</map>

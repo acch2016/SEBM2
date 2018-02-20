@@ -1,0 +1,6 @@
+<map id="rtos_start_scheduler" name="rtos_start_scheduler">
+<area shape="rect" id="node2" href="$rtos_8c.html#a3da6087b2f86fb0fb3e76625949e8f5c" title="init_is_alive" alt="" coords="209,5,297,32"/>
+<area shape="rect" id="node3" href="$rtos_8c.html#a9b85523da77622a323eb372876dfc751" title="Create task API function. " alt="" coords="193,56,312,83"/>
+<area shape="rect" id="node4" href="$rtos_8c.html#aba04d49a0ff5bf5f2f345018999838cf" title="idle_task" alt="" coords="215,107,290,133"/>
+<area shape="rect" id="node5" href="$rtos_8c.html#a1ceb3400b8198a46a5d1a4eac152c3dc" title="reload_systick" alt="" coords="199,157,306,184"/>
+</map>

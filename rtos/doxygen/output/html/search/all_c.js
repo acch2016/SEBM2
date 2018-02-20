@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['refresh_5fis_5falive',['refresh_is_alive',['../rtos_8c.html#ae25772d4efa4a8bc45435fde080f1db1',1,'rtos.c']]],
+  ['reload_5fsystick',['reload_systick',['../rtos_8c.html#a1ceb3400b8198a46a5d1a4eac152c3dc',1,'rtos.c']]],
+  ['reserved',['reserved',['../structrtos__tcb__t.html#a6280d9791dddefc70fb685e703f3fbaf',1,'rtos_tcb_t']]],
+  ['rtos_2ec',['rtos.c',['../rtos_8c.html',1,'']]],
+  ['rtos_2eh',['rtos.h',['../rtos_8h.html',1,'']]],
+  ['rtos_5factivate_5ftask',['rtos_activate_task',['../rtos_8c.html#a1e438279e41f08e401c4cbf7bd7e3080',1,'rtos_activate_task(rtos_task_handle_t task):&#160;rtos.c'],['../rtos_8h.html#a1e438279e41f08e401c4cbf7bd7e3080',1,'rtos_activate_task(rtos_task_handle_t task):&#160;rtos.c']]],
+  ['rtos_5fautostart_5fe',['rtos_autostart_e',['../rtos_8h.html#abc615bb86d706d530b5c2df8fdbb4ed7',1,'rtos.h']]],
+  ['rtos_5fconfig_2eh',['rtos_config.h',['../rtos__config_8h.html',1,'']]],
+  ['rtos_5fcreate_5ftask',['rtos_create_task',['../rtos_8c.html#a9b85523da77622a323eb372876dfc751',1,'rtos_create_task(void(*task_body)(), uint8_t priority, rtos_autostart_e autostart):&#160;rtos.c'],['../rtos_8h.html#a9b85523da77622a323eb372876dfc751',1,'rtos_create_task(void(*task_body)(), uint8_t priority, rtos_autostart_e autostart):&#160;rtos.c']]],
+  ['rtos_5fdelay',['rtos_delay',['../rtos_8c.html#ab057ccfcb6b57d8a5c74698954424a3c',1,'rtos_delay(rtos_tick_t ticks):&#160;rtos.c'],['../rtos_8h.html#ab057ccfcb6b57d8a5c74698954424a3c',1,'rtos_delay(rtos_tick_t ticks):&#160;rtos.c']]],
+  ['rtos_5fenable_5fis_5falive',['RTOS_ENABLE_IS_ALIVE',['../rtos__config_8h.html#a39f0bdba655835bed09acf2b877dda7d',1,'rtos_config.h']]],
+  ['rtos_5fget_5fclock',['rtos_get_clock',['../rtos_8c.html#acbd74d71425a80d6c94d4f6db9ed6208',1,'rtos_get_clock(void):&#160;rtos.c'],['../rtos_8h.html#acbd74d71425a80d6c94d4f6db9ed6208',1,'rtos_get_clock(void):&#160;rtos.c']]],
+  ['rtos_5finvalid_5ftask',['RTOS_INVALID_TASK',['../rtos_8h.html#aa9d5b836fd119d6113293879a6f20f02',1,'rtos.h']]],
+  ['rtos_5fis_5falive_5fperiod_5fin_5fus',['RTOS_IS_ALIVE_PERIOD_IN_US',['../rtos__config_8h.html#af96730a20bdd5d445fc10cd8a714f6f0',1,'rtos_config.h']]],
+  ['rtos_5fis_5falive_5fpin',['RTOS_IS_ALIVE_PIN',['../rtos__config_8h.html#a99b12db21253b934c642dbb7d63415c2',1,'rtos_config.h']]],
+  ['rtos_5fis_5falive_5fport',['RTOS_IS_ALIVE_PORT',['../rtos__config_8h.html#a734f36ab1e490fdcaabf1921abee6716',1,'rtos_config.h']]],
+  ['rtos_5fmain_2ec',['rtos_main.c',['../rtos__main_8c.html',1,'']]],
+  ['rtos_5fmax_5fnumber_5fof_5ftasks',['RTOS_MAX_NUMBER_OF_TASKS',['../rtos__config_8h.html#afab84c04df2c86443de30e78f61ba0e6',1,'rtos_config.h']]],
+  ['rtos_5fstack_5fsize',['RTOS_STACK_SIZE',['../rtos__config_8h.html#a0d8b036199750366136ec44cc68eeeec',1,'rtos_config.h']]],
+  ['rtos_5fstart_5fscheduler',['rtos_start_scheduler',['../rtos_8c.html#ac343e700239fe05a50f3b107a185d737',1,'rtos_start_scheduler(void):&#160;rtos.c'],['../rtos_8h.html#ac343e700239fe05a50f3b107a185d737',1,'rtos_start_scheduler(void):&#160;rtos.c']]],
+  ['rtos_5fsuspend_5ftask',['rtos_suspend_task',['../rtos_8c.html#aea0dd80ed0f0129c49dc95863f43c5dc',1,'rtos_suspend_task(void):&#160;rtos.c'],['../rtos_8h.html#aea0dd80ed0f0129c49dc95863f43c5dc',1,'rtos_suspend_task(void):&#160;rtos.c']]],
+  ['rtos_5ftask_5fhandle_5ft',['rtos_task_handle_t',['../rtos_8h.html#a0882c12198dee2bba66fa81918cda67a',1,'rtos.h']]],
+  ['rtos_5ftcb_5ft',['rtos_tcb_t',['../structrtos__tcb__t.html',1,'']]],
+  ['rtos_5ftic_5fperiod_5fin_5fus',['RTOS_TIC_PERIOD_IN_US',['../rtos__config_8h.html#aacfc3b96c15dfcdda284a1acfacafd92',1,'rtos_config.h']]],
+  ['rtos_5ftick_5ft',['rtos_tick_t',['../rtos_8h.html#aa2a9532cbb5237b8d4d168255fd7dc8e',1,'rtos.h']]]
+];

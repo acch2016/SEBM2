@@ -1,6 +1,6 @@
-22:27:18 **** Incremental Build of configuration Debug for project rtos ****
-make -r -j8 all 
+09:35:49 **** Incremental Build of configuration Debug for project rtos ****
+make -r -j4 all 
 make: Nothing to be done for `all'.
 
-22:27:18 Build Finished (took 175ms)
+09:35:49 Build Finished (took 240ms)
 
