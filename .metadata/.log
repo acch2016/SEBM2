@@ -5467,3 +5467,474 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2018-03-10 13:01:34.015
+!MESSAGE Using manifest XSD 'rsc/manifest.xsd' for manifest 'C:\nxp\MCUXpressoIDE_10.1.1_606\ide\plugins\com.nxp.mcuxpresso.core.datamodels.resources_10.1.0.201712141742\fragments\ksdk_manifest.xml'.
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2018-03-10 13:01:34.061
+!MESSAGE Using SDK manifest 'ksdk_manifest.xml'.
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2018-03-10 13:01:34.249
+!MESSAGE Using manifest XSD 'rsc/manifest.xsd' for manifest 'C:\nxp\MCUXpressoIDE_10.1.1_606\ide\plugins\com.nxp.mcuxpresso.core.datamodels.resources_10.1.0.201712141742\override\override_manifest.xml'.
+
+!ENTRY com.nxp.mcuxpresso.core.datamodels 1 0 2018-03-10 13:01:34.280
+!MESSAGE Using SDK manifest 'override_manifest.xml'.
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-03-10 13:02:56.835
+!MESSAGE Indexed '0310_practica1' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.jface.text 2 0 2018-03-10 17:04:25.287
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-03-10 17:04:25.287
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:45.776
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:45.886
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:45.948
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.042
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.151
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.244
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.338
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.463
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.556
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more
+
+!ENTRY com.crt.log 4 -1 2018-03-10 19:47:46.650
+!MESSAGE Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+!STACK 0
+java.lang.Exception: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at com.crt.utils.general.Reporter.log(Reporter.java:603)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:370)
+	at com.crt.config.database.ChipVendor.save(ChipVendor.java:727)
+	at com.crt.config.database.TargetConfig.save(TargetConfig.java:1548)
+	at com.crt.config.SaveViewInfo.saving(SaveViewInfo.java:113)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:389)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:198)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:201)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1186)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.Project.close(Project.java:193)
+	at org.eclipse.ui.actions.CloseResourceAction.invokeOperation(CloseResourceAction.java:135)
+	at org.eclipse.ui.actions.WorkspaceAction.execute(WorkspaceAction.java:156)
+	at org.eclipse.ui.actions.WorkspaceAction$1.runInWorkspace(WorkspaceAction.java:456)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.runtime.CoreException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.cdt.internal.core.settings.model.ExceptionFactory.createCoreException(ExceptionFactory.java:26)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:205)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:885)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:846)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:840)
+	at org.eclipse.cdt.core.model.CoreModel.setProjectDescription(CoreModel.java:1389)
+	at com.nxp.mcuxpresso.core.datamodels.SDKChipVendorDatabase.save(SDKChipVendorDatabase.java:365)
+	... 15 more
+Caused by: java.lang.IllegalArgumentException: Attempted to beginRule: R/, does not match outer scope rule: MultiRule[P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_master,P/0129_i2c,P/SDK_driver_exampledriver_examples_i2c_i2c_read_accel_value_transfer,P/0201_IMU_,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_master,P/SDK_driver_exampledriver_examples_i2c_i2c_polling_b2b_transfer_slave,P/rtos,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_interrupt_b2b_transfer_slave,P/SDK_driver_exampledriver_examples_i2c_i2c_edma_b2b_transfer_master]
+	at org.eclipse.core.runtime.Assert.isLegal(Assert.java:63)
+	at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:134)
+	at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:333)
+	at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:63)
+	at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:307)
+	at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:121)
+	at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:2188)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2235)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	... 21 more

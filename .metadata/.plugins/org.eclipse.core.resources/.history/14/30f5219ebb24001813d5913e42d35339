@@ -1,0 +1,13 @@
+/*
+ * I2C.c
+ *
+ *  Created on: Mar 10, 2018
+ *      Author: Usuario
+ */
+#include "I2C.h"
+
+
+
+    I2C_RTOS_Init(handle, I20, masterConfig, srcClock_Hz);
+
+
