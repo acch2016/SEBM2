@@ -1,88 +1,36 @@
-09:35:40 **** Incremental Build of configuration Debug for project rtos ****
+15:36:33 **** Incremental Build of configuration Debug for project 0310_practica1 ****
 make -r -j4 all 
-Building target: rtos.axf
+Building file: ../source/0310_practica1.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_FREE_RTOS -DFSL_RTOS_FREE_RTOS -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM\SEBM2\0310_practica1\board" -I"C:\SEBM\SEBM2\0310_practica1\source" -I"C:\SEBM\SEBM2\0310_practica1" -I"C:\SEBM\SEBM2\0310_practica1\freertos\include" -I"C:\SEBM\SEBM2\0310_practica1\freertos\portable" -I"C:\SEBM\SEBM2\0310_practica1\drivers" -I"C:\SEBM\SEBM2\0310_practica1\CMSIS" -I"C:\SEBM\SEBM2\0310_practica1\drivers\freertos" -I"C:\SEBM\SEBM2\0310_practica1\utilities" -I"C:\SEBM\SEBM2\0310_practica1\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/0310_practica1.d" -MT"source/0310_practica1.o" -MT"source/0310_practica1.d" -o "source/0310_practica1.o" "../source/0310_practica1.c"
+../source/0310_practica1.c: In function 'Read_RTC':
+../source/0310_practica1.c:181:18: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+  masterXfer.data = buffer;
+                  ^
+../source/0310_practica1.c:181:18: warning: 'buffer' is used uninitialized in this function [-Wuninitialized]
+  masterXfer.data = buffer;
+  ~~~~~~~~~~~~~~~~^~~~~~~~
+Finished building: ../source/0310_practica1.c
+ 
+Building target: 0310_practica1.axf
 Invoking: MCU Linker
-arm-none-eabi-gcc -nostdlib -Xlinker -print-memory-usage -Xlinker --gc-sections -Xlinker -Map="rtos.map" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T rtos_Debug.ld -o "rtos.axf"  ./utilities/fsl_debug_console.o ./utilities/fsl_io.o ./utilities/fsl_log.o ./utilities/fsl_str.o  ./startup/startup_mk64f12.o  ./source/rtos.o ./source/rtos_main.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_flash.o ./drivers/fsl_gpio.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./board/board.o ./board/clock_config.o ./board/peripherals.o ./board/pin_mux.o  ./CMSIS/system_MK64F12.o   
+arm-none-eabi-gcc -nostdlib -Xlinker -print-memory-usage -Xlinker --gc-sections -Xlinker -Map="0310_practica1.map" -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T 0310_practica1_Debug.ld -o "0310_practica1.axf"  ./utilities/fsl_debug_console.o ./utilities/fsl_io.o ./utilities/fsl_log.o ./utilities/fsl_str.o  ./startup/startup_mk64f12.o  ./source/0310_practica1.o ./source/semihost_hardfault.o  ./freertos/source/croutine.o ./freertos/source/event_groups.o ./freertos/source/list.o ./freertos/source/queue.o ./freertos/source/tasks.o ./freertos/source/timers.o  ./freertos/portable/fsl_tickless_systick.o ./freertos/portable/heap_4.o ./freertos/portable/port.o  ./drivers/freertos/fsl_dspi_freertos.o ./drivers/freertos/fsl_i2c_freertos.o ./drivers/freertos/fsl_uart_freertos.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_dspi.o ./drivers/fsl_flash.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_pit.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./board/board.o ./board/clock_config.o ./board/peripherals.o ./board/pin_mux.o  ./CMSIS/system_MK64F12.o   
 Memory region         Used Size  Region Size  %age Used
-   PROGRAM_FLASH:       32960 B         1 MB      3.14%
-      SRAM_UPPER:       13724 B       192 KB      6.98%
+   PROGRAM_FLASH:       66228 B         1 MB      6.32%
+      SRAM_UPPER:       19312 B       192 KB      9.82%
       SRAM_LOWER:          0 GB        64 KB      0.00%
         FLEX_RAM:          0 GB         4 KB      0.00%
-Finished building target: rtos.axf
+Finished building target: 0310_practica1.axf
  
 make --no-print-directory post-build
 Performing post-build steps
-arm-none-eabi-size "rtos.axf"; # arm-none-eabi-objcopy -v -O binary "rtos.axf" "rtos.bin" ; # checksum -p MK64FN1M0xxx12 -d "rtos.bin";
+arm-none-eabi-size "0310_practica1.axf"; # arm-none-eabi-objcopy -v -O binary "0310_practica1.axf" "0310_practica1.bin" ; # checksum -p MK64FN1M0xxx12 -d "0310_practica1.bin";
    text	   data	    bss	    dec	    hex	filename
-  32944	     16	  13708	  46668	   b64c	rtos.axf
+  66212	     16	  19296	  85524	  14e14	0310_practica1.axf
  
-09:35:47 **** Incremental Build of configuration Debug for project rtos ****
+15:36:40 **** Incremental Build of configuration Debug for project 0310_practica1 ****
 make -r -j4 all 
 make: Nothing to be done for `all'.
-09:35:49 **** Incremental Build of configuration Debug for project rtos ****
+15:36:42 **** Incremental Build of configuration Debug for project 0310_practica1 ****
 make -r -j4 all 
 make: Nothing to be done for `all'.
-13:11:40 **** Clean-only build of configuration Debug for project 0129_i2c ****
-make -r -j4 clean 
-rm -rf  ./utilities/fsl_debug_console.o ./utilities/fsl_io.o ./utilities/fsl_log.o ./utilities/fsl_str.o  ./startup/startup_mk64f12.o  ./source/0129_i2c.o ./source/semihost_hardfault.o  ./drivers/fsl_clock.o ./drivers/fsl_common.o ./drivers/fsl_flash.o ./drivers/fsl_gpio.o ./drivers/fsl_i2c.o ./drivers/fsl_rtc.o ./drivers/fsl_smc.o ./drivers/fsl_uart.o  ./board/board.o ./board/clock_config.o ./board/peripherals.o ./board/pin_mux.o  ./CMSIS/system_MK64F12.o  ./utilities/fsl_debug_console.d ./utilities/fsl_io.d ./utilities/fsl_log.d ./utilities/fsl_str.d  ./startup/startup_mk64f12.d  ./source/0129_i2c.d ./source/semihost_hardfault.d  ./drivers/fsl_clock.d ./drivers/fsl_common.d ./drivers/fsl_flash.d ./drivers/fsl_gpio.d ./drivers/fsl_i2c.d ./drivers/fsl_rtc.d ./drivers/fsl_smc.d ./drivers/fsl_uart.d  ./board/board.d ./board/clock_config.d ./board/peripherals.d ./board/pin_mux.d  ./CMSIS/system_MK64F12.d  0129_i2c.axf
- 
-13:11:41 **** Build of configuration Debug for project 0129_i2c ****
-make -r -j4 all 
-Building file: ../utilities/fsl_debug_console.c
-Building file: ../utilities/fsl_io.c
-Building file: ../utilities/fsl_log.c
-Invoking: MCU C Compiler
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"utilities/fsl_debug_console.d" -MT"utilities/fsl_debug_console.o" -MT"utilities/fsl_debug_console.d" -o "utilities/fsl_debug_console.o" "../utilities/fsl_debug_console.c"
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"utilities/fsl_io.d" -MT"utilities/fsl_io.o" -MT"utilities/fsl_io.d" -o "utilities/fsl_io.o" "../utilities/fsl_io.c"
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"utilities/fsl_log.d" -MT"utilities/fsl_log.o" -MT"utilities/fsl_log.d" -o "utilities/fsl_log.o" "../utilities/fsl_log.c"
-Building file: ../utilities/fsl_str.c
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"utilities/fsl_str.d" -MT"utilities/fsl_str.o" -MT"utilities/fsl_str.d" -o "utilities/fsl_str.o" "../utilities/fsl_str.c"
-Finished building: ../utilities/fsl_debug_console.c
-Finished building: ../utilities/fsl_log.c
-Finished building: ../utilities/fsl_io.c
- 
- 
- 
-Building file: ../startup/startup_mk64f12.c
-Building file: ../source/0129_i2c.c
-Finished building: ../utilities/fsl_str.c
-Invoking: MCU C Compiler
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"startup/startup_mk64f12.d" -MT"startup/startup_mk64f12.o" -MT"startup/startup_mk64f12.d" -o "startup/startup_mk64f12.o" "../startup/startup_mk64f12.c"
- 
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/0129_i2c.d" -MT"source/0129_i2c.o" -MT"source/0129_i2c.d" -o "source/0129_i2c.o" "../source/0129_i2c.c"
-Building file: ../source/semihost_hardfault.c
-Building file: ../drivers/fsl_clock.c
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/semihost_hardfault.d" -MT"source/semihost_hardfault.o" -MT"source/semihost_hardfault.d" -o "source/semihost_hardfault.o" "../source/semihost_hardfault.c"
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"drivers/fsl_clock.d" -MT"drivers/fsl_clock.o" -MT"drivers/fsl_clock.d" -o "drivers/fsl_clock.o" "../drivers/fsl_clock.c"
-Finished building: ../startup/startup_mk64f12.c
- 
-Finished building: ../source/semihost_hardfault.c
-Building file: ../drivers/fsl_common.c
-Finished building: ../source/0129_i2c.c
- 
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"drivers/fsl_common.d" -MT"drivers/fsl_common.o" -MT"drivers/fsl_common.d" -o "drivers/fsl_common.o" "../drivers/fsl_common.c"
- 
-Building file: ../drivers/fsl_flash.c
-Building file: ../drivers/fsl_gpio.c
-Invoking: MCU C Compiler
-Finished building: ../drivers/fsl_clock.c
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"drivers/fsl_flash.d" -MT"drivers/fsl_flash.o" -MT"drivers/fsl_flash.d" -o "drivers/fsl_flash.o" "../drivers/fsl_flash.c"
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"drivers/fsl_gpio.d" -MT"drivers/fsl_gpio.o" -MT"drivers/fsl_gpio.d" -o "drivers/fsl_gpio.o" "../drivers/fsl_gpio.c"
- 
-Building file: ../drivers/fsl_i2c.c
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"drivers/fsl_i2c.d" -MT"drivers/fsl_i2c.o" -MT"drivers/fsl_i2c.d" -o "drivers/fsl_i2c.o" "../drivers/fsl_i2c.c"
-Finished building: ../drivers/fsl_common.c
- 
-Building file: ../drivers/fsl_rtc.c
-Invoking: MCU C Compiler
-arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=1 -D__MCUXPRESSO -DDEBUG -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\SEBM2\SEBM2\0129_i2c\board" -I"C:\SEBM2\SEBM2\0129_i2c\source" -I"C:\SEBM2\SEBM2\0129_i2c" -I"C:\SEBM2\SEBM2\0129_i2c\drivers" -I"C:\SEBM2\SEBM2\0129_i2c\CMSIS" -I"C:\SEBM2\SEBM2\0129_i2c\utilities" -I"C:\SEBM2\SEBM2\0129_i2c\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"drivers/fsl_rtc.d" -MT"drivers/fsl_rtc.o" -MT"drivers/fsl_rtc.d" -o "drivers/fsl_rtc.o" "../drivers/fsl_rtc.c"
-Command canceled
