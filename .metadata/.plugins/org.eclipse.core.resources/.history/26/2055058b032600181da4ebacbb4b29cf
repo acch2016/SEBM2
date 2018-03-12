@@ -52,7 +52,6 @@ typedef long BaseType_t;
 i2c_master_handle_t g_m_handle;
 
 SemaphoreHandle_t semaphoreISR;
-SemaphoreHandle_t semaphoreISR_;
 SemaphoreHandle_t mutex;
 /*
  * @brief   Application entry point.
@@ -125,21 +124,18 @@ static void i2c_master_callback(I2C_Type *base, i2c_master_handle_t *handle,
 	SemaphoreHandle_t *h_semaphoreISR = (SemaphoreHandle_t *)userData;
 
 	BaseType_t reschedule;
-	BaseType_t reschedule_;
 	reschedule = pdFALSE;
 
 //	if (status == kStatus_Success)
 //	{
 //		g_MasterCompletionFlag = true;
 //	}
-    xSemaphoreGiveFromISR(semaphoreISR, &reschedule); /* TODO: de aqui no pasa */
-    xSemaphoreGiveFromISR(semaphoreISR_, &reschedule_); /* TODO: de aqui no pasa */
-    portYIELD_FROM_ISR(pdTRUE == reschedule || pdTRUE == reschedule_ ? pdTRUE : pdFALSE);
+    xSemaphoreGiveFromISR(*h_semaphoreISR, &reschedule); /* TODO: de aqui no pasa */
+    portYIELD_FROM_ISR(reschedule);
 }
 
 void ST_RTC(void *arg)
 {
-
 	PRINTF(" ST_RTC \n\r");
 
 	i2c_master_transfer_t masterXfer;
@@ -160,10 +156,6 @@ void ST_RTC(void *arg)
 //	g_MasterCompletionFlag = false;
 	xSemaphoreTake(semaphoreISR, portMAX_DELAY);
 	xSemaphoreGive(mutex);
-	for(;;)
-	{
-		vTaskDelay(1000);
-	}
 
 }
 
@@ -189,7 +181,7 @@ void Read_RTC(void *arg)
 	//	{
 	//	}
 	//	g_MasterCompletionFlag = false;
-		xSemaphoreTake(semaphoreISR_, portMAX_DELAY);
+		xSemaphoreTake(semaphoreISR, portMAX_DELAY);
 		xSemaphoreGive(mutex);
 
 		PRINTF("%d\n\r", &buffer);
@@ -223,11 +215,9 @@ int main(void) {
 	I2C_MasterInit(I2C0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
 
 	semaphoreISR = xSemaphoreCreateBinary();
-	semaphoreISR_ = xSemaphoreCreateBinary();
 	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, &semaphoreISR);
 
 //	NVIC_EnableIRQ(PORTE_IRQn);
-	NVIC_SetPriority(I2C0_IRQn,5);
 
     mutex = xSemaphoreCreateMutex();
 

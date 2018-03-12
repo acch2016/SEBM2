@@ -231,7 +231,7 @@ int main(void) {
 
     mutex = xSemaphoreCreateMutex();
 
-	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
+	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES-1, NULL);
 	xTaskCreate(Read_RTC, "Read_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
 	vTaskStartScheduler();
 

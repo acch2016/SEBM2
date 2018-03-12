@@ -223,7 +223,6 @@ int main(void) {
 	I2C_MasterInit(I2C0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
 
 	semaphoreISR = xSemaphoreCreateBinary();
-	semaphoreISR_ = xSemaphoreCreateBinary();
 	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, &semaphoreISR);
 
 //	NVIC_EnableIRQ(PORTE_IRQn);
@@ -231,7 +230,7 @@ int main(void) {
 
     mutex = xSemaphoreCreateMutex();
 
-	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
+	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES-1, NULL);
 	xTaskCreate(Read_RTC, "Read_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
 	vTaskStartScheduler();
 
