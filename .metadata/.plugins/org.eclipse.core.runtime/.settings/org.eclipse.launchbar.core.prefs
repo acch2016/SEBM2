@@ -1,8 +1,10 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:0310_practica1 JLink Release,org.eclipse.launchbar.core.descriptorType.default\:0201_IMU_ JLink Release,org.eclipse.launchbar.core.descriptorType.default\:0201_IMU_ JLink Debug,org.eclipse.launchbar.core.descriptorType.default\:0310_practica1 JLink Debug
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:0310_practica1 JLink Release,org.eclipse.launchbar.core.descriptorType.default\:0201_IMU_ JLink Debug,org.eclipse.launchbar.core.descriptorType.default\:0201_IMU_ JLink Release,org.eclipse.launchbar.core.descriptorType.default\:0310_practica1 JLink Debug
 eclipse.preferences.version=1
 org.eclipse.launchbar.core.descriptorType.default\:0201_IMU_\ JLink\ Debug/activeLaunchMode=debug
 org.eclipse.launchbar.core.descriptorType.default\:0201_IMU_\ JLink\ Debug/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:0310_practica1\ JLink\ Debug/activeLaunchMode=debug
+org.eclipse.launchbar.core.descriptorType.default\:0310_practica1\ JLink\ Debug/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
 org.eclipse.launchbar.core.descriptorType.default\:rtos\ JLink\ Debug/activeLaunchMode=debug
 org.eclipse.launchbar.core.descriptorType.default\:rtos\ JLink\ Debug/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

@@ -130,7 +130,7 @@ static void i2c_master_callback(I2C_Type *base, i2c_master_handle_t *handle,
 //	{
 //		g_MasterCompletionFlag = true;
 //	}
-    xSemaphoreGiveFromISR(*h_semaphoreISR, &reschedule); /* TODO: de aqui no pasa */
+    xSemaphoreGiveFromISR(*h_semaphoreISR, &reschedule);/* TODO: de aqui no pasa */
     portYIELD_FROM_ISR(reschedule);
 }
 

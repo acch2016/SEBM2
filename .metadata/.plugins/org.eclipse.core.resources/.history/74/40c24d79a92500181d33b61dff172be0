@@ -48,15 +48,23 @@
 #include "semphr.h"
 /* TODO: insert other definitions and declarations here. */
 typedef long BaseType_t;
-//volatile bool g_MasterCompletionFlag = false;
-i2c_master_handle_t g_m_handle;
-
+volatile bool g_MasterCompletionFlag = false;
 SemaphoreHandle_t semaphoreISR;
 SemaphoreHandle_t mutex;
 /*
  * @brief   Application entry point.
  */
 
+
+
+typedef struct _i2c_rtos_handle
+{
+    I2C_Type *base;                 /*!< I2C base address */
+    i2c_master_handle_t drv_handle; /*!< A handle of the underlying driver, treated as opaque by the RTOS layer */
+    status_t async_status;          /*!< Transactional state of the underlying driver */
+    SemaphoreHandle_t mutex;        /*!< A mutex to lock the handle during a transfer */
+    SemaphoreHandle_t semaphore;    /*!< A semaphore to notify and unblock task when the transfer ends */
+} i2c_rtos_handle_t;
 
 static void i2c_release_bus_delay(void)
 {
@@ -119,27 +127,26 @@ void i2c_ReleaseBus()
 static void i2c_master_callback(I2C_Type *base, i2c_master_handle_t *handle,
         status_t status, void * userData)
 {
-//	PRINTF(" i2c_master_callback \n\r");
-
-	SemaphoreHandle_t *h_semaphoreISR = (SemaphoreHandle_t *)userData;
-
+	PRINTF(" i2c_master_callback \n\r");
 	BaseType_t reschedule;
 	reschedule = pdFALSE;
 
-//	if (status == kStatus_Success)
-//	{
-//		g_MasterCompletionFlag = true;
-//	}
-    xSemaphoreGiveFromISR(*h_semaphoreISR, &reschedule); /* TODO: de aqui no pasa */
+	if (status == kStatus_Success)
+	{
+		g_MasterCompletionFlag = true;
+	}
+    xSemaphoreGiveFromISR(semaphoreISR, &reschedule);
     portYIELD_FROM_ISR(reschedule);
 }
 
 void ST_RTC(void *arg)
 {
 	PRINTF(" ST_RTC \n\r");
+	i2c_master_handle_t g_m_handle;
+	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, NULL);
 
 	i2c_master_transfer_t masterXfer;
-	uint8_t data_buffer = 0x80;
+	uint8_t data_buffer = 0x01;
 	masterXfer.slaveAddress = 0x6F;
 	masterXfer.direction = kI2C_Write;
 	masterXfer.subaddress = 0x00;
@@ -150,43 +157,42 @@ void ST_RTC(void *arg)
 
     xSemaphoreTake(mutex, portMAX_DELAY);
 	I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
-//	while (!g_MasterCompletionFlag)
-//	{
-//	}
-//	g_MasterCompletionFlag = false;
+	while (!g_MasterCompletionFlag)
+	{
+	}
+	g_MasterCompletionFlag = false;
 	xSemaphoreTake(semaphoreISR, portMAX_DELAY);
 	xSemaphoreGive(mutex);
+
+
 
 }
 
 void Read_RTC(void *arg)
 {
 	PRINTF(" Read_RTC \n\r");
+	i2c_master_handle_t g_m_handle;
+	i2c_master_transfer_t masterXfer;
+	uint8_t buffer;
+	masterXfer.slaveAddress = 0x6F;
+	masterXfer.direction = kI2C_Read;
+	masterXfer.subaddress = 0x00;
+	masterXfer.subaddressSize = 1;
+	masterXfer.data = buffer;
+	masterXfer.dataSize = 1;
+	masterXfer.flags = kI2C_TransferDefaultFlag;
 
-	while(1)
+	xSemaphoreTake(mutex, portMAX_DELAY);
+	I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
+	while (!g_MasterCompletionFlag)
 	{
-		i2c_master_transfer_t masterXfer;
-		uint8_t *buffer;
-		masterXfer.slaveAddress = 0x6F;
-		masterXfer.direction = kI2C_Read;
-		masterXfer.subaddress = 0x00;
-		masterXfer.subaddressSize = 1;
-		masterXfer.data = buffer;
-		masterXfer.dataSize = 1;
-		masterXfer.flags = kI2C_TransferDefaultFlag;
-
-		xSemaphoreTake(mutex, portMAX_DELAY);
-		I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
-	//	while (!g_MasterCompletionFlag)
-	//	{
-	//	}
-	//	g_MasterCompletionFlag = false;
-		xSemaphoreTake(semaphoreISR, portMAX_DELAY);
-		xSemaphoreGive(mutex);
-
-		PRINTF("%d\n\r", &buffer);
 	}
+	g_MasterCompletionFlag = false;
+	xSemaphoreTake(semaphoreISR, portMAX_DELAY);
+	xSemaphoreGive(mutex);
 
+
+	PRINTF("%d\n\r",buffer);
 }
 
 int main(void) {
@@ -214,15 +220,12 @@ int main(void) {
 
 	I2C_MasterInit(I2C0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
 
-	semaphoreISR = xSemaphoreCreateBinary();
-	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, &semaphoreISR);
 
-//	NVIC_EnableIRQ(PORTE_IRQn);
-
+    semaphoreISR = xSemaphoreCreateBinary();
     mutex = xSemaphoreCreateMutex();
 
-	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
-	xTaskCreate(Read_RTC, "Read_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
+	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES, NULL);
+	xTaskCreate(Read_RTC, "Read_RTC", configMINIMAL_STACK_SIZE, NULL, configMAX_PRIORITIES, NULL);
 	vTaskStartScheduler();
 
     /* Force the counter to be placed into memory. */

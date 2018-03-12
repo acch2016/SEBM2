@@ -1,6 +1,6 @@
-15:36:42 **** Incremental Build of configuration Debug for project 0310_practica1 ****
+23:52:30 **** Incremental Build of configuration Debug for project 0310_practica1 ****
 make -r -j4 all 
 make: Nothing to be done for `all'.
 
-15:36:43 Build Finished (took 249ms)
+23:52:30 Build Finished (took 187ms)
 
