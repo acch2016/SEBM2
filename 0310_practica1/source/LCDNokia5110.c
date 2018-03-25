@@ -11,12 +11,12 @@
 #include "fsl_port.h"
 
 
-//#define BAUD_RATE_LCD 9600
-#define BAUD_RATE_LCD 4000000U
+#define BAUD_RATE_LCD 9600
+//#define BAUD_RATE_LCD 4000000U
 #define DATA_SIZE 1
 #define PIN_RST 0
 #define PIN_CLK 1
-#define PIN_DIN 2
+#define PIN_SOUT 2
 #define PIN_DC 3
 
 
@@ -24,7 +24,8 @@
 dspi_transfer_t masterXfer;
 dspi_master_config_t  masterConfig;
 dspi_command_data_config_t command;
-
+dspi_master_handle_t spihandle;
+dspi_master_transfer_callback_t spicallback;
 
 static const uint8_t ASCII[][5] =
 {
@@ -134,7 +135,7 @@ void LCDNokia_init(void) {
 
 	masterConfig.whichCtar = kDSPI_Ctar0;
 	masterConfig.ctarConfig.baudRate = BAUD_RATE_LCD;
-	masterConfig.ctarConfig.bitsPerFrame = 8;
+	masterConfig.ctarConfig.bitsPerFrame = 8U;
 	masterConfig.ctarConfig.cpol = kDSPI_ClockPolarityActiveHigh;
 	masterConfig.ctarConfig.cpha = kDSPI_ClockPhaseFirstEdge;
 	masterConfig.ctarConfig.direction = kDSPI_MsbFirst;
@@ -149,6 +150,7 @@ void LCDNokia_init(void) {
 	masterConfig.samplePoint = kDSPI_SckToSin0Clock;
 
 	DSPI_MasterInit(SPI0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
+	//DSPI_MasterTransferCreateHandle(SPI0, &spihandle, spicallback,spihandle );
 
 	masterXfer.rxData = 0U;
 	masterXfer.dataSize = DATA_SIZE;
@@ -158,7 +160,7 @@ void LCDNokia_init(void) {
 	CLOCK_EnableClock(kCLOCK_PortD);
 
 	PORT_SetPinMux(PORTD, PIN_RST, kPORT_MuxAsGpio);
-	PORT_SetPinMux(PORTD, PIN_DIN, kPORT_MuxAlt2);
+	PORT_SetPinMux(PORTD, PIN_SOUT, kPORT_MuxAlt2);
 	PORT_SetPinMux(PORTD, PIN_CLK, kPORT_MuxAlt2);
 	PORT_SetPinMux(PORTD, PIN_DC, kPORT_MuxAsGpio);
 
@@ -173,15 +175,16 @@ void LCDNokia_init(void) {
 	GPIO_SetPinsOutput(GPIOD, PIN_RST);
 
 	LCDNokia_writeByte(LCD_CMD, 0x21); //Tell LCD that extended commands follow
-	LCDNokia_writeByte(LCD_CMD, 0xBF); //Set LCD Vop (Contrast): Try 0xB1(good @ 3.3V) or 0xBF if your display is too dark
+	LCDNokia_writeByte(LCD_CMD, 0xB1); //Set LCD Vop (Contrast): Try 0xB1(good @ 3.3V) or 0xBF if your display is too dark
 	LCDNokia_writeByte(LCD_CMD, 0x04); //Set Temp coefficent
 	LCDNokia_writeByte(LCD_CMD, 0x14); //LCD bias mode 1:48: Try 0x13 or 0x14
-
 	LCDNokia_writeByte(LCD_CMD, 0x20); //We must send 0x20 before modifying the display control mode
 	LCDNokia_writeByte(LCD_CMD, 0x0C); //Set display control, normal mode. 0x0D for inverse
 }
 
 void LCDNokia_bitmap(const uint8_t* my_array){
+
+	LCDNokia_gotoXY(0, 0);
 	uint16_t index=0;
 	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
 		LCDNokia_writeByte(LCD_DATA, *(my_array+index));
@@ -221,8 +224,10 @@ void LCDNokia_sendString(uint8_t *characters) {
 
 void LCDNokia_clear(void) {
 	uint16_t index = 0;
-	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
+	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++){
 		LCDNokia_writeByte(LCD_DATA, 0x00);
+	}
+
 	LCDNokia_gotoXY(0, 0); //After we clear the display, return to the home position
 }
 

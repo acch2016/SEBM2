@@ -57,37 +57,16 @@ uint8_t ITESO[504];
 
 uint8_t receiveBuff[BUFFER_LEN];
 
-void LCD_PRINT_TASK()
+void delay(uint16_t delay)
 {
-	TickType_t xLastWakeTime;
-	const TickType_t xPeriod = pdMS_TO_TICKS(65000);
-	xLastWakeTime = xTaskGetTickCount();
-	uint8_t string1[]="ITESO"; /*! String to be printed in the LCD*/
-	uint8_t string2[]="uMs y DSPs"; /*! String to be printed in the LCD*/
-	LCDNokia_init(); /*! Configuration function for the LCD */
-	for(;;) {
-		LCDNokia_clear();/*! It clears the information printed in the LCD*/
-		LCDNokia_bitmap(&ITESO[0]); /*! It prints an array that hold an image, in this case is the initial picture*/
-		vTaskDelayUntil(&xLastWakeTime,xPeriod);
-		LCDNokia_clear();
-		vTaskDelayUntil(&xLastWakeTime,xPeriod);
-		LCDNokia_clear();
-		LCDNokia_gotoXY(25,0); /*! It establishes the position to print the messages in the LCD*/
-		LCDNokia_sendString(string1); /*! It print a string stored in an array*/
-		vTaskDelayUntil(&xLastWakeTime,xPeriod);
-		LCDNokia_gotoXY(10,1);
-		LCDNokia_sendString(string2); /*! It print a string stored in an array*/
-		vTaskDelayUntil(&xLastWakeTime,xPeriod);
-		LCDNokia_gotoXY(25,2);
-		LCDNokia_sendChar('2'); /*! It prints a character*/
-		LCDNokia_sendChar('0'); /*! It prints a character*/
-		LCDNokia_sendChar('1'); /*! It prints a character*/
-		LCDNokia_sendChar('5'); /*! It prints a character*/
-		vTaskDelayUntil(&xLastWakeTime,xPeriod);
+	volatile int counter, counter2;
+
+	for(counter2=16; counter2 > 0; counter2--)
+	{
+		for(counter=delay; counter > 0; counter--);
 
 	}
 }
-
 
 int main(void)
 {
@@ -96,13 +75,30 @@ int main(void)
 	BOARD_InitBootPeripherals();
 	/* Init FSL debug console. */
 	BOARD_InitDebugConsole();
+	uint8_t string1[]="ITESO"; /*! String to be printed in the LCD*/
+	uint8_t string2[]="uMs y DSPs"; /*! String to be printed in the LCD*/
+	LCDNokia_init(); /*! Configuration function for the LCD */
+	for(;;) {
+		LCDNokia_clear();/*! It clears the information printed in the LCD*/
+		LCDNokia_bitmap(&ITESO[0]); /*! It prints an array that hold an image, in this case is the initial picture*/
+		delay(65000);
+		LCDNokia_clear();
+		delay(65000);
+		LCDNokia_clear();
+		LCDNokia_gotoXY(25,0); /*! It establishes the position to print the messages in the LCD*/
+		LCDNokia_sendString(string1); /*! It print a string stored in an array*/
+		delay(65000);
+		LCDNokia_gotoXY(10,1);
+		LCDNokia_sendString(string2); /*! It print a string stored in an array*/
+		delay(65000);
+		LCDNokia_gotoXY(25,2);
+		LCDNokia_sendChar('2'); /*! It prints a character*/
+		LCDNokia_sendChar('0'); /*! It prints a character*/
+		LCDNokia_sendChar('1'); /*! It prints a character*/
+		LCDNokia_sendChar('5'); /*! It prints a character*/
+		delay(65000);
 
-	xTaskCreate(LCD_PRINT_TASK,"LCD_PRINT_TASK", configMINIMAL_STACK_SIZE,NULL,configMAX_PRIORITIES,NULL);
-
-	for(;;)
-	{
-	}
-}
+	}}
 
 
 
