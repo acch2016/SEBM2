@@ -5,14 +5,13 @@
  *      Author: Luis
  */
 
-#include "fsl_dspi.h"
-#include "LCDNokia5110.h"
 #include "fsl_gpio.h"
 #include "fsl_port.h"
+#include "fsl_dspi.h"
+#include "LCDNokia5110.h"
 
-
-#define BAUD_RATE_LCD 9600
-//#define BAUD_RATE_LCD 4000000U
+//#define BAUD_RATE_LCD 9600
+#define BAUD_RATE_LCD 4000000U
 #define DATA_SIZE 1
 #define PIN_RST 0
 #define PIN_CLK 1
@@ -20,13 +19,13 @@
 #define PIN_DC 3
 
 
-
-dspi_transfer_t masterXfer;
 dspi_master_config_t  masterConfig;
 dspi_command_data_config_t command;
-dspi_master_handle_t spihandle;
-dspi_master_transfer_callback_t spicallback;
+dspi_transfer_t masterXfer;
+dspi_master_handle_t g_m_handle;
 
+
+/**Mapa de bits*/
 static const uint8_t ASCII[][5] =
 {
 		{0x00, 0x00, 0x00, 0x00, 0x00} // 20
@@ -128,93 +127,82 @@ static const uint8_t ASCII[][5] =
 };
 
 
-
 void LCDNokia_init(void) {
-
-	/* DSPI master config */
-
-	masterConfig.whichCtar = kDSPI_Ctar0;
-	masterConfig.ctarConfig.baudRate = BAUD_RATE_LCD;
-	masterConfig.ctarConfig.bitsPerFrame = 8U;
-	masterConfig.ctarConfig.cpol = kDSPI_ClockPolarityActiveHigh;
-	masterConfig.ctarConfig.cpha = kDSPI_ClockPhaseFirstEdge;
-	masterConfig.ctarConfig.direction = kDSPI_MsbFirst;
-	masterConfig.ctarConfig.pcsToSckDelayInNanoSec = 1000000000/BAUD_RATE_LCD ;
-	masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec    = 1000000000/BAUD_RATE_LCD ;
-	masterConfig.ctarConfig.betweenTransferDelayInNanoSec = 1000000000/BAUD_RATE_LCD ;
-	masterConfig.whichPcs = kDSPI_Pcs0;
-	masterConfig.pcsActiveHighOrLow = kDSPI_PcsActiveLow;
-	masterConfig.enableContinuousSCK = false;
-	masterConfig.enableRxFifoOverWrite = false;
-	masterConfig.enableModifiedTimingFormat = false;
-	masterConfig.samplePoint = kDSPI_SckToSin0Clock;
-
-	DSPI_MasterInit(SPI0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
-	//DSPI_MasterTransferCreateHandle(SPI0, &spihandle, spicallback,spihandle );
-
-	masterXfer.rxData = 0U;
-	masterXfer.dataSize = DATA_SIZE;
-	masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous ; //INVESTIGAR
-
-	/* PORTD GPIO config*/
+	/*SPI0 Config*/
+	DSPI_MasterGetDefaultConfig(&masterConfig);
 	CLOCK_EnableClock(kCLOCK_PortD);
-
-	PORT_SetPinMux(PORTD, PIN_RST, kPORT_MuxAsGpio);
-	PORT_SetPinMux(PORTD, PIN_SOUT, kPORT_MuxAlt2);
 	PORT_SetPinMux(PORTD, PIN_CLK, kPORT_MuxAlt2);
+	PORT_SetPinMux(PORTD, PIN_SOUT, kPORT_MuxAlt2);
+	DSPI_MasterInit(SPI0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
+	DSPI_MasterTransferCreateHandle(SPI0,  &g_m_handle, NULL, NULL);
+
+
+
+	//	DSPI_MasterGetDefaultConfig(&masterConfig);
+	DSPI_GetDefaultDataCommandConfig(&command);
+
+
+	/*GPIO SPI0*/
+
+	/*GPIO PIN out NokiaLCD */
+	CLOCK_EnableClock(kCLOCK_PortD);
+	gpio_pin_config_t pin_rst_config = {kGPIO_DigitalOutput,0};
+	gpio_pin_config_t pin_dc_config = {kGPIO_DigitalOutput,0};
+	PORT_SetPinMux(PORTD, PIN_RST, kPORT_MuxAsGpio);
 	PORT_SetPinMux(PORTD, PIN_DC, kPORT_MuxAsGpio);
-
-	gpio_pin_config_t gpio_pin_rst_config = {kGPIO_DigitalOutput,1};
-	gpio_pin_config_t gpio_pin_dc_config = {kGPIO_DigitalOutput,1};
-
-	GPIO_PinInit(GPIOD,PIN_RST, &gpio_pin_rst_config);
-	GPIO_PinInit(GPIOD,PIN_DC, &gpio_pin_dc_config);
-
+	GPIO_PinInit(GPIOD,PIN_RST,&pin_rst_config);
+	GPIO_PinInit(GPIOD,PIN_DC,&pin_dc_config);
 	GPIO_ClearPinsOutput(GPIOD, PIN_RST);
 	LCD_delay();
 	GPIO_SetPinsOutput(GPIOD, PIN_RST);
 
-	LCDNokia_writeByte(LCD_CMD, 0x21); //Tell LCD that extended commands follow
-	LCDNokia_writeByte(LCD_CMD, 0xB1); //Set LCD Vop (Contrast): Try 0xB1(good @ 3.3V) or 0xBF if your display is too dark
-	LCDNokia_writeByte(LCD_CMD, 0x04); //Set Temp coefficent
-	LCDNokia_writeByte(LCD_CMD, 0x14); //LCD bias mode 1:48: Try 0x13 or 0x14
-	LCDNokia_writeByte(LCD_CMD, 0x20); //We must send 0x20 before modifying the display control mode
-	LCDNokia_writeByte(LCD_CMD, 0x0C); //Set display control, normal mode. 0x0D for inverse
+
+
+	LCDNokia_writeByte(LCD_CMD, 0x21); /**Tell LCD that extended commands follow*/
+	LCDNokia_writeByte(LCD_CMD, 0xBF); /**Set LCD Vop (Contrast): Try 0xB1(good @ 3.3V) or 0xBF if your display is too dark*/
+	LCDNokia_writeByte(LCD_CMD, 0x04); /**Set Temp coefficent*/
+	LCDNokia_writeByte(LCD_CMD, 0x14); /**LCD bias mode 1:48: Try 0x13 or 0x14*/
+	LCDNokia_writeByte(LCD_CMD, 0x20); /**We must send 0x20 before modifying the display control mode*/
+	LCDNokia_writeByte(LCD_CMD, 0x0C); /**Set display control, normal mode. 0x0D for inverse*/
 }
 
 void LCDNokia_bitmap(const uint8_t* my_array){
-
-	LCDNokia_gotoXY(0, 0);
 	uint16_t index=0;
-	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
+	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)/**Recorrer el mapa de bits. Los pixeles hay que agruparlos en bytes*/
 		LCDNokia_writeByte(LCD_DATA, *(my_array+index));
 }
 
 
-
-void LCDNokia_writeByte(uint8_t DataOrCmd, uint8_t data)
+/**It writes a byte in the LCD memory. The place of writting is the last place that was indicated by LCDNokia_gotoXY. In the reset state
+ * the initial place is x=0 y=0*/
+void LCDNokia_writeByte(uint8_t DataOrCmd, uint8_t data)//ss
 {
 	if(DataOrCmd)
 		GPIO_SetPinsOutput(GPIOD,PIN_DC);
 	else
 		GPIO_ClearPinsOutput(GPIOD,PIN_DC);
 
+	masterXfer.txData = data;
+	masterXfer.rxData = 0U;
+	masterXfer.dataSize = DATA_SIZE;
+	masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous ; //INVESTIGAR
 	DSPI_StartTransfer(SPI0);
-	DSPI_MasterWriteDataBlocking(SPI0, &command, data);
+	DSPI_MasterTransferNonBlocking(SPI0, &g_m_handle, &masterXfer);
 	DSPI_StopTransfer(SPI0);
-
+	//DSPI_StartTransfer(SPI0);
+	//	DSPI_MasterTransferNonBlocking(SPI0, &g_m_handle, &masterXfer);
 }
 
 void LCDNokia_sendChar(uint8_t character) {
 	uint16_t index = 0;
 
-	LCDNokia_writeByte(LCD_DATA, 0x00); //Blank vertical line padding
+	LCDNokia_writeByte(LCD_DATA, 0x00); /**Blank vertical line padding*/
 
 	for (index = 0 ; index < 5 ; index++)
 		LCDNokia_writeByte(LCD_DATA, ASCII[character - 0x20][index]);
-	//0x20 is the ASCII character for Space (' '). The font table starts with this character
+	/**0x20 is the ASCII character for Space (' '). The font table starts with this character*/
 
-	LCDNokia_writeByte(LCD_DATA, 0x00); //Blank vertical line padding
+	LCDNokia_writeByte(LCD_DATA, 0x00); /**Blank vertical line padding*/
 }
 
 void LCDNokia_sendString(uint8_t *characters) {
@@ -222,18 +210,19 @@ void LCDNokia_sendString(uint8_t *characters) {
 		LCDNokia_sendChar(*characters++);
 }
 
+/**it clears all the figures in the LCD*/
 void LCDNokia_clear(void) {
 	uint16_t index = 0;
-	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++){
+	for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
 		LCDNokia_writeByte(LCD_DATA, 0x00);
-	}
-
-	LCDNokia_gotoXY(0, 0); //After we clear the display, return to the home position
+	LCDNokia_gotoXY(0, 0); /**After we clear the display, return to the home position*/
 }
 
+/**It is used to indicate the place for writing a new character in the LCD. The values that x can take are 0 to 84 and y can take values
+ * from 0 to 5*/
 void LCDNokia_gotoXY(uint8_t x, uint8_t y) {
-	LCDNokia_writeByte(LCD_CMD, 0x80 | x);  // Column.
-	LCDNokia_writeByte(LCD_CMD, 0x40 | y);  // Row.  ?
+	LCDNokia_writeByte(LCD_CMD, 0x80 | x);  //** Column.*/
+	LCDNokia_writeByte(LCD_CMD, 0x40 | y);  //** Row.  ? */
 }
 
 void LCD_delay(void)
