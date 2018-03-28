@@ -41,6 +41,7 @@
 #include "fsl_debug_console.h"
 /* TODO: insert other include files here. */
 #include "fsl_port.h"
+#include "fsl_device_registers.h"
 #include "fsl_i2c.h"
 
 #include "FreeRTOS.h"
@@ -205,17 +206,18 @@ int main(void) {
     BOARD_InitBootPeripherals();
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
-
-	CLOCK_EnableClock(kCLOCK_PortE);
+	
 	CLOCK_EnableClock(kCLOCK_I2c0);
+	CLOCK_EnableClock(kCLOCK_PortB);
+	
 //
 	port_pin_config_t config_i2c =
 	{ kPORT_PullDisable, kPORT_SlowSlewRate, kPORT_PassiveFilterDisable,
-	        kPORT_OpenDrainDisable, kPORT_LowDriveStrength, kPORT_MuxAlt5,
+	        kPORT_OpenDrainDisable, kPORT_LowDriveStrength, kPORT_MuxAlt2,
 	        kPORT_UnlockRegister, };
 
-	PORT_SetPinConfig(PORTE, 24, &config_i2c);
-	PORT_SetPinConfig(PORTE, 25, &config_i2c);
+	PORT_SetPinConfig(PORTB, 2, &config_i2c);
+	PORT_SetPinConfig(PORTB, 3, &config_i2c);
 //
 	i2c_master_config_t masterConfig;
 	I2C_MasterGetDefaultConfig(&masterConfig);
@@ -225,7 +227,7 @@ int main(void) {
 	semaphoreISR_ = xSemaphoreCreateBinary();
 	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, &semaphoreISR);
 //
-	NVIC_EnableIRQ(PORTE_IRQn);
+	NVIC_EnableIRQ(PORTB_IRQn);
 	NVIC_SetPriority(I2C0_IRQn,5);
 //
     mutex = xSemaphoreCreateMutex();
