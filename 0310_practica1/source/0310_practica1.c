@@ -32,28 +32,28 @@
 // * @file    0310_practica1.c
 // * @brief   Application entry point.
 // */
-//#include <stdio.h>
-//#include "board.h"
-//#include "peripherals.h"
-//#include "pin_mux.h"
-//#include "clock_config.h"
-//#include "MK64F12.h"
-//#include "fsl_debug_console.h"
-///* TODO: insert other include files here. */
-//#include "fsl_port.h"
-//#include "fsl_i2c.h"
-//
-//#include "FreeRTOS.h"
-//#include "task.h"
-//#include "semphr.h"
-///* TODO: insert other definitions and declarations here. */
-//typedef long BaseType_t;
-////volatile bool g_MasterCompletionFlag = false;
-//i2c_master_handle_t g_m_handle;
-//
-//SemaphoreHandle_t semaphoreISR;
-//SemaphoreHandle_t semaphoreISR_;
-//SemaphoreHandle_t mutex;
+#include <stdio.h>
+#include "board.h"
+#include "peripherals.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "MK64F12.h"
+#include "fsl_debug_console.h"
+/* TODO: insert other include files here. */
+#include "fsl_port.h"
+#include "fsl_i2c.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+#include "semphr.h"
+/* TODO: insert other definitions and declarations here. */
+typedef long BaseType_t;
+volatile bool g_MasterCompletionFlag = false;
+i2c_master_handle_t g_m_handle;
+
+SemaphoreHandle_t semaphoreISR;
+SemaphoreHandle_t semaphoreISR_;
+SemaphoreHandle_t mutex;
 ///*
 // * @brief   Application entry point.
 // */
@@ -117,129 +117,128 @@
 //	i2c_release_bus_delay();
 //}
 //
-//static void i2c_master_callback(I2C_Type *base, i2c_master_handle_t *handle,
-//        status_t status, void * userData)
-//{
-////	PRINTF(" i2c_master_callback \n\r");
-//
-//	SemaphoreHandle_t *h_semaphoreISR = (SemaphoreHandle_t *)userData;
-//
-//	BaseType_t reschedule;
-//	BaseType_t reschedule_;
-//	reschedule = pdFALSE;
-//
+static void i2c_master_callback(I2C_Type *base, i2c_master_handle_t *handle,
+        status_t status, void * userData)
+{
+//	PRINTF(" i2c_master_callback \n\r");
+
+	SemaphoreHandle_t *h_semaphoreISR = (SemaphoreHandle_t *)userData;
+
+	BaseType_t reschedule;
+	BaseType_t reschedule_;
+	reschedule = pdFALSE;
+
 ////	if (status == kStatus_Success)
 ////	{
 ////		g_MasterCompletionFlag = true;
 ////	}
-//    xSemaphoreGiveFromISR(semaphoreISR, &reschedule); /* TODO: de aqui no pasa */
-//    xSemaphoreGiveFromISR(semaphoreISR_, &reschedule_); /* TODO: de aqui no pasa */
-//    portYIELD_FROM_ISR(pdTRUE == reschedule || pdTRUE == reschedule_ ? pdTRUE : pdFALSE);
-//}
-//
-//void ST_RTC(void *arg)
-//{
-//
-//	PRINTF(" ST_RTC \n\r");
-//
-//	i2c_master_transfer_t masterXfer;
-//	uint8_t data_buffer = 0x80;
-//	masterXfer.slaveAddress = 0x6F;
-//	masterXfer.direction = kI2C_Write;
-//	masterXfer.subaddress = 0x00;
-//	masterXfer.subaddressSize = 1;
-//	masterXfer.data = &data_buffer;
-//	masterXfer.dataSize = 1;
-//	masterXfer.flags = kI2C_TransferDefaultFlag;
-//
-//    xSemaphoreTake(mutex, portMAX_DELAY);
-//	I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
+    xSemaphoreGiveFromISR(semaphoreISR, &reschedule); /* TODO: de aqui no pasa */
+    xSemaphoreGiveFromISR(semaphoreISR_, &reschedule_); /* TODO: de aqui no pasa */
+    portYIELD_FROM_ISR(pdTRUE == reschedule || pdTRUE == reschedule_ ? pdTRUE : pdFALSE);
+}
+
+void ST_RTC(void *arg)
+{
+
+	PRINTF(" ST_RTC \n\r");
+
+	i2c_master_transfer_t masterXfer;
+	uint8_t data_buffer = 0x80;
+	masterXfer.slaveAddress = 0x6F;
+	masterXfer.direction = kI2C_Write;
+	masterXfer.subaddress = 0x00;
+	masterXfer.subaddressSize = 1;
+	masterXfer.data = &data_buffer;
+	masterXfer.dataSize = 1;
+	masterXfer.flags = kI2C_TransferDefaultFlag;
+
+    xSemaphoreTake(mutex, portMAX_DELAY);
+	I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
 ////	while (!g_MasterCompletionFlag)
 ////	{
 ////	}
 ////	g_MasterCompletionFlag = false;
-//	xSemaphoreTake(semaphoreISR, portMAX_DELAY);
-//	xSemaphoreGive(mutex);
-//	for(;;)
-//	{
-//		vTaskDelay(1000);
-//	}
+	xSemaphoreTake(semaphoreISR, portMAX_DELAY);
+	xSemaphoreGive(mutex);
+	for(;;)
+	{
+		vTaskDelay(1000);
+	}
+
+}
 //
-//}
-//
-//void Read_RTC(void *arg)
-//{
-//	PRINTF(" Read_RTC \n\r");
-//
-//	while(1)
-//	{
-//		i2c_master_transfer_t masterXfer;
-//		uint8_t *buffer;
-//		masterXfer.slaveAddress = 0x6F;
-//		masterXfer.direction = kI2C_Read;
-//		masterXfer.subaddress = 0x00;
-//		masterXfer.subaddressSize = 1;
-//		masterXfer.data = buffer;
-//		masterXfer.dataSize = 1;
-//		masterXfer.flags = kI2C_TransferDefaultFlag;
-//
-//		xSemaphoreTake(mutex, portMAX_DELAY);
-//		I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
+void Read_RTC(void *arg)
+{
+	PRINTF(" Read_RTC \n\r");
+
+	while(1)
+	{
+		i2c_master_transfer_t masterXfer;
+		uint8_t *buffer;
+		masterXfer.slaveAddress = 0x6F;
+		masterXfer.direction = kI2C_Read;
+		masterXfer.subaddress = 0x00;
+		masterXfer.subaddressSize = 1;
+		masterXfer.data = buffer;
+		masterXfer.dataSize = 1;
+		masterXfer.flags = kI2C_TransferDefaultFlag;
+
+		xSemaphoreTake(mutex, portMAX_DELAY);
+		I2C_MasterTransferNonBlocking(I2C0, &g_m_handle, &masterXfer);
 //	//	while (!g_MasterCompletionFlag)
 //	//	{
 //	//	}
 //	//	g_MasterCompletionFlag = false;
-//		xSemaphoreTake(semaphoreISR_, portMAX_DELAY);
-//		xSemaphoreGive(mutex);
+		xSemaphoreTake(semaphoreISR_, portMAX_DELAY);
+		xSemaphoreGive(mutex);
+
+		PRINTF("%d\n\r", &buffer);
+	}
+
+}
+
+int main(void) {
+
+  	/* Init board hardware. */
+    BOARD_InitBootPins();
+    BOARD_InitBootClocks();
+    BOARD_InitBootPeripherals();
+  	/* Init FSL debug console. */
+    BOARD_InitDebugConsole();
+
+	CLOCK_EnableClock(kCLOCK_PortE);
+	CLOCK_EnableClock(kCLOCK_I2c0);
 //
-//		PRINTF("%d\n\r", &buffer);
-//	}
+	port_pin_config_t config_i2c =
+	{ kPORT_PullDisable, kPORT_SlowSlewRate, kPORT_PassiveFilterDisable,
+	        kPORT_OpenDrainDisable, kPORT_LowDriveStrength, kPORT_MuxAlt5,
+	        kPORT_UnlockRegister, };
+
+	PORT_SetPinConfig(PORTE, 24, &config_i2c);
+	PORT_SetPinConfig(PORTE, 25, &config_i2c);
 //
-//}
+	i2c_master_config_t masterConfig;
+	I2C_MasterGetDefaultConfig(&masterConfig);
+	I2C_MasterInit(I2C0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
 //
-//int main(void) {
+	semaphoreISR = xSemaphoreCreateBinary();
+	semaphoreISR_ = xSemaphoreCreateBinary();
+	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, &semaphoreISR);
 //
-//  	/* Init board hardware. */
-//    BOARD_InitBootPins();
-//    BOARD_InitBootClocks();
-//    BOARD_InitBootPeripherals();
-//  	/* Init FSL debug console. */
-//    BOARD_InitDebugConsole();
+	NVIC_EnableIRQ(PORTE_IRQn);
+	NVIC_SetPriority(I2C0_IRQn,5);
 //
-//	CLOCK_EnableClock(kCLOCK_PortE);
-//	CLOCK_EnableClock(kCLOCK_I2c0);
+    mutex = xSemaphoreCreateMutex();
 //
-//	port_pin_config_t config_i2c =
-//	{ kPORT_PullDisable, kPORT_SlowSlewRate, kPORT_PassiveFilterDisable,
-//	        kPORT_OpenDrainDisable, kPORT_LowDriveStrength, kPORT_MuxAlt5,
-//	        kPORT_UnlockRegister, };
+	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
+	xTaskCreate(Read_RTC, "Read_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
+	vTaskStartScheduler();
 //
-//	PORT_SetPinConfig(PORTE, 24, &config_i2c);
-//	PORT_SetPinConfig(PORTE, 25, &config_i2c);
-//
-//	i2c_master_config_t masterConfig;
-//	I2C_MasterGetDefaultConfig(&masterConfig);
-//
-//	I2C_MasterInit(I2C0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
-//
-//	semaphoreISR = xSemaphoreCreateBinary();
-//	semaphoreISR_ = xSemaphoreCreateBinary();
-//	I2C_MasterTransferCreateHandle(I2C0, &g_m_handle, i2c_master_callback, &semaphoreISR);
-//
-////	NVIC_EnableIRQ(PORTE_IRQn);
-//	NVIC_SetPriority(I2C0_IRQn,5);
-//
-//    mutex = xSemaphoreCreateMutex();
-//
-//	xTaskCreate(ST_RTC, "ST_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
-//	xTaskCreate(Read_RTC, "Read_RTC", configMINIMAL_STACK_SIZE+210, NULL, configMAX_PRIORITIES, NULL);
-//	vTaskStartScheduler();
-//
-//    /* Force the counter to be placed into memory. */
-//    volatile static int i = 0 ;
-//    /* Enter an infinite loop, just incrementing a counter. */
-//    while(1) {
-//        i++ ;
-//    }
-//    return 0 ;
-//}
+    /* Force the counter to be placed into memory. */
+    volatile static int i = 0 ;
+    /* Enter an infinite loop, just incrementing a counter. */
+    while(1) {
+        i++ ;
+    }
+    return 0 ;
+}
