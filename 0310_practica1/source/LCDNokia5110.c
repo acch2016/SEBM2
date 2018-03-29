@@ -9,20 +9,30 @@
 #include "fsl_port.h"
 #include "fsl_dspi.h"
 #include "LCDNokia5110.h"
+#include "NVIC.h"
 
-//#define BAUD_RATE_LCD 9600
-#define BAUD_RATE_LCD 4000000U
-#define DATA_SIZE 1
+#define TRANSFER_BAUDRATE 500000U /* Transfer baudrate - 500k */
 #define PIN_RST 0
 #define PIN_CLK 1
 #define PIN_SOUT 2
 #define PIN_DC 3
 
-
-dspi_master_config_t  masterConfig;
-dspi_command_data_config_t command;
-dspi_transfer_t masterXfer;
+volatile bool isTransferCompleted = false;
 dspi_master_handle_t g_m_handle;
+dspi_transfer_t masterXfer;
+dspi_command_data_config_t command;
+
+void DSPI_MasterUserCallback(SPI_Type *base, dspi_master_handle_t *handle, status_t status, void *userData)
+{
+	if (status == kStatus_Success)
+	{
+		__NOP();
+	}
+
+	isTransferCompleted = true;
+}
+
+
 
 
 /**Mapa de bits*/
@@ -126,35 +136,52 @@ static const uint8_t ASCII[][5] =
 		,{0x78, 0x46, 0x41, 0x46, 0x78} // 7f
 };
 
+void SPI_INIT(){
+
+}
+
 
 void LCDNokia_init(void) {
-	/*SPI0 Config*/
+
+	/*SPI0 Master Config*/
+	CLOCK_EnableClock(kCLOCK_PortD);
+	CLOCK_EnableClock(kCLOCK_Spi0);
+	port_pin_config_t config_SPI = {
+			kPORT_PullDisable,
+			kPORT_SlowSlewRate,
+			kPORT_PassiveFilterDisable,
+			kPORT_OpenDrainDisable,
+			kPORT_LowDriveStrength,
+			kPORT_MuxAlt2,
+			kPORT_UnlockRegister,
+	};
+	PORT_SetPinConfig(PORTD, PIN_CLK, &config_SPI);
+	PORT_SetPinConfig(PORTD, PIN_SOUT, &config_SPI);
+	dspi_master_config_t masterConfig;
 	DSPI_MasterGetDefaultConfig(&masterConfig);
-	CLOCK_EnableClock(kCLOCK_PortD);
-	PORT_SetPinMux(PORTD, PIN_CLK, kPORT_MuxAlt2);
-	PORT_SetPinMux(PORTD, PIN_SOUT, kPORT_MuxAlt2);
-	DSPI_MasterInit(SPI0, &masterConfig, CLOCK_GetFreq(kCLOCK_BusClk));
-	DSPI_MasterTransferCreateHandle(SPI0,  &g_m_handle, NULL, NULL);
+	DSPI_MasterInit(SPI0, &masterConfig, CLOCK_GetBusClkFreq());
+	NVIC_enableInterruptAndPriotity(SPI0_IRQn, 6);
+	DSPI_MasterTransferCreateHandle(SPI0, &g_m_handle, DSPI_MasterUserCallback, NULL);
 
 
+	port_pin_config_t config_out = {
+			kPORT_PullDisable,
+			kPORT_SlowSlewRate,
+			kPORT_PassiveFilterDisable,
+			kPORT_OpenDrainDisable,
+			kPORT_LowDriveStrength,
+			kPORT_MuxAsGpio,
+			kPORT_UnlockRegister,
+	};
+	gpio_pin_config_t pin_config = {kGPIO_DigitalOutput,0};
+	GPIO_PinInit(GPIOD, PIN_RST, &pin_config);
+	GPIO_PinInit(GPIOD, PIN_DC, &pin_config);
+	PORT_SetPinConfig(PORTD, PIN_RST, &config_out);
+	PORT_SetPinConfig(PORTD, PIN_DC, &config_out);
 
-	//	DSPI_MasterGetDefaultConfig(&masterConfig);
-	DSPI_GetDefaultDataCommandConfig(&command);
-
-
-	/*GPIO SPI0*/
-
-	/*GPIO PIN out NokiaLCD */
-	CLOCK_EnableClock(kCLOCK_PortD);
-	gpio_pin_config_t pin_rst_config = {kGPIO_DigitalOutput,0};
-	gpio_pin_config_t pin_dc_config = {kGPIO_DigitalOutput,0};
-	PORT_SetPinMux(PORTD, PIN_RST, kPORT_MuxAsGpio);
-	PORT_SetPinMux(PORTD, PIN_DC, kPORT_MuxAsGpio);
-	GPIO_PinInit(GPIOD,PIN_RST,&pin_rst_config);
-	GPIO_PinInit(GPIOD,PIN_DC,&pin_dc_config);
-	GPIO_ClearPinsOutput(GPIOD, PIN_RST);
+	GPIO_ClearPinsOutput(GPIOD, 1<< PIN_RST);
 	LCD_delay();
-	GPIO_SetPinsOutput(GPIOD, PIN_RST);
+	GPIO_SetPinsOutput(GPIOD,1<< PIN_RST);
 
 
 
@@ -175,23 +202,28 @@ void LCDNokia_bitmap(const uint8_t* my_array){
 
 /**It writes a byte in the LCD memory. The place of writting is the last place that was indicated by LCDNokia_gotoXY. In the reset state
  * the initial place is x=0 y=0*/
-void LCDNokia_writeByte(uint8_t DataOrCmd, uint8_t data)//ss
+void LCDNokia_writeByte(uint8_t DataOrCmd, uint8_t data)//
 {
 	if(DataOrCmd)
-		GPIO_SetPinsOutput(GPIOD,PIN_DC);
+		GPIO_SetPinsOutput(GPIOD,1 << PIN_DC);
 	else
-		GPIO_ClearPinsOutput(GPIOD,PIN_DC);
+		GPIO_ClearPinsOutput(GPIOD,1 << PIN_DC);
 
-	masterXfer.txData = data;
-	masterXfer.rxData = 0U;
-	masterXfer.dataSize = DATA_SIZE;
+	isTransferCompleted = false;
+	masterXfer.txData = &data;
+	masterXfer.rxData = NULL;
+	masterXfer.dataSize = sizeof(uint8_t);
 	masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous ; //INVESTIGAR
-	DSPI_StartTransfer(SPI0);
 	DSPI_MasterTransferNonBlocking(SPI0, &g_m_handle, &masterXfer);
+	while (!isTransferCompleted)
+	{
+	}
 	DSPI_StopTransfer(SPI0);
-	//DSPI_StartTransfer(SPI0);
-	//	DSPI_MasterTransferNonBlocking(SPI0, &g_m_handle, &masterXfer);
+
 }
+
+
+
 
 void LCDNokia_sendChar(uint8_t character) {
 	uint16_t index = 0;
