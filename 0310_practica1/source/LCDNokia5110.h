@@ -5,6 +5,9 @@
  *      Author: Luis
  */
 #include "stdint.h"
+#include "fsl_gpio.h"
+#include "fsl_port.h"
+#include "fsl_dspi.h"
 #ifndef LCDNOKIA5110_H_
 #define LCDNOKIA5110_H_
 
@@ -18,11 +21,14 @@
 #define DATA_OR_CMD_PIN 3
 #define RESET_PIN 0
 
+
+void DSPI_MasterUserCallback(SPI_Type *base, dspi_master_handle_t *handle, status_t status, void *userData);
+
 /********************************************************************************************/
 /********************************************************************************************/
 /********************************************************************************************/
 /*!
- 	 \brief	 /**It configures the LCD
+
 
  	 \param[in]  void
 
