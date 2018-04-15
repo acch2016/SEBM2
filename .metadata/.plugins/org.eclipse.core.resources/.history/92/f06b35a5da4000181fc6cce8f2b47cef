@@ -34,7 +34,7 @@ typedef struct uart_params{
  * Prototypes
  ******************************************************************************/
 uint8_t* UART_Echo(void);
-void uart_init(UART_Type * base, uart_handle_config * handle);
+void uart_init(void);
 void UART_userSend(uint8_t *data, size_t n);
 uart_rtos_handle_t* getHandleTeraTerm();
 uart_rtos_handle_t* getHandleBlueTerm();

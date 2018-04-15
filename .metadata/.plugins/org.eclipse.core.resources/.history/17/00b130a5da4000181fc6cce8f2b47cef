@@ -34,6 +34,8 @@ uint8_t string_Tera[] = "\r\n Terminal 1: ";
 uint8_t string_Blue[] = "\r\n Terminal 2: ";
 
 
+
+
 TaskHandle_t readMem_handle;
 TaskHandle_t readMem_handle_b;
 
@@ -63,143 +65,148 @@ TaskHandle_t echo_handle_b;
 
 
 
-//void createQueues(void){
-//	timeQueue = xQueueCreate(12,sizeof(uint8_t));
-//	xMutex = xSemaphoreCreateMutex();
-//}
+void createQueues(void){
+	timeQueue = xQueueCreate(12,sizeof(uint8_t));
+	xMutex = xSemaphoreCreateMutex();
+}
 
-//void sendTime(void *parameter){
-//	uint8_t fromQueue[12];
-//	uint32_t n;
-//	uint8_t qCounter = 0;
-//	uint8_t *ptrFromQueue = fromQueue;
-//	uint8_t space[] = "\n\r";
-//	uint8_t *spacePtr=space;
-//
-//	while(1){
-//		for(qCounter;qCounter<=11;qCounter++){
-//			xQueueReceive(timeQueue, &fromQueue[qCounter], portMAX_DELAY);
-//		}
-//		qCounter=0;
-//
-//		UART_userSend(ptrFromQueue,sizeof(fromQueue));
-//		UART_userSend(spacePtr,sizeof(space));
-//	}
-//}
+void sendTime(void *parameter){
+	uint8_t fromQueue[12];
+	uint32_t n;
+	uint8_t qCounter = 0;
+	uint8_t *ptrFromQueue = fromQueue;
+	uint8_t space[] = "\n\r";
+	uint8_t *spacePtr=space;
 
-//void getTime_task(void *parameter){
-//
-//
-//	uint8_t timeBuffer[7];
-//	uint8_t qCounter=0;
-//	uint8_t asciiDate[12];
-//	uint8_t *ptrToDate = asciiDate;
-//
-//	I2C_Write(I2C0, RTC_DEVICE_ADD, 0x02, 0x44);
-//
-//	/*Start Timer*/
-//	I2C_Write(I2C0, RTC_DEVICE_ADD, 0x00, 0x80);
-//
-//	while(1){
-//		xSemaphoreTake(xMutex,portMAX_DELAY);
-//		I2C_Read(I2C0, RTC_DEVICE_ADD, 0x00, timeBuffer, 7);
-//		xSemaphoreGive(xMutex);
-//
-//		timeBuffer[0] = timeBuffer[0] & SECONDS_REG_SIZE;
-//		timeBuffer[1] = timeBuffer[1] & MINUTES_REG_SIZE;
-//		timeBuffer[2] = timeBuffer[2] & HOURS_REG_SIZE;
-//		timeBuffer[4] = timeBuffer[4] & DAY_REG_SIZE;
-//		timeBuffer[5] = timeBuffer[5] & MONTH_REG_SIZE;
-//		timeBuffer[6] = timeBuffer[6] & YEAR_REG_SIZE;
-//
-//		asciiDate[0] = ((timeBuffer[0] & BCD_L)) + ASCII_NUMBER_MASK;
-//		asciiDate[1] = ((timeBuffer[0] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[2] = ((timeBuffer[1] & BCD_L))+ASCII_NUMBER_MASK;
-//		asciiDate[3] = ((timeBuffer[1] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[4] = ((timeBuffer[2] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[5] = ((timeBuffer[2] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[6] = ((timeBuffer[4] & BCD_L))+ASCII_NUMBER_MASK;
-//		asciiDate[7] = ((timeBuffer[4] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[8] = ((timeBuffer[5] & BCD_L))+ASCII_NUMBER_MASK;
-//		asciiDate[9] = ((timeBuffer[5] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[10] = ((timeBuffer[6] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//		asciiDate[11] = ((timeBuffer[6] & BCD_H)>>4)+ASCII_NUMBER_MASK;
-//
-//		for(qCounter;qCounter<=11;qCounter++){
-//			xQueueSend(timeQueue,&asciiDate[qCounter],1000);
-//		}
-//		qCounter=0;
-//
-////		PRINTF("Time: %c%c:%c%c:%c%c  Date: %c%c/%c%c/%c%c\r",  (char)asciiDate[5],
-////																(char)asciiDate[4],
-////																(char)asciiDate[3],
-////																(char)asciiDate[2],
-////																(char)asciiDate[1],
-////																(char)asciiDate[0],
-////																(char)asciiDate[11],
-////																(char)asciiDate[10],
-////																(char)asciiDate[9],
-////																(char)asciiDate[8],
-////																(char)asciiDate[7],
-////																(char)asciiDate[6]);
-//
-//		vTaskDelay(100);
-//	}
-//}
+	while(1){
+		for(qCounter;qCounter<=11;qCounter++){
+			xQueueReceive(timeQueue, &fromQueue[qCounter], portMAX_DELAY);
+		}
+		qCounter=0;
+
+		UART_userSend(ptrFromQueue,sizeof(fromQueue));
+		UART_userSend(spacePtr,sizeof(space));
+	}
+}
+
+void getTime_task(void *parameter){
+
+
+	uint8_t timeBuffer[7];
+	uint8_t qCounter=0;
+	uint8_t asciiDate[12];
+	uint8_t *ptrToDate = asciiDate;
+
+	I2C_Write(I2C0, RTC_DEVICE_ADD, 0x02, 0x44);
+
+	/*Start Timer*/
+	I2C_Write(I2C0, RTC_DEVICE_ADD, 0x00, 0x80);
+
+	while(1){
+		xSemaphoreTake(xMutex,portMAX_DELAY);
+		I2C_Read(I2C0, RTC_DEVICE_ADD, 0x00, timeBuffer, 7);
+		xSemaphoreGive(xMutex);
+
+		timeBuffer[0] = timeBuffer[0] & SECONDS_REG_SIZE;
+		timeBuffer[1] = timeBuffer[1] & MINUTES_REG_SIZE;
+		timeBuffer[2] = timeBuffer[2] & HOURS_REG_SIZE;
+		timeBuffer[4] = timeBuffer[4] & DAY_REG_SIZE;
+		timeBuffer[5] = timeBuffer[5] & MONTH_REG_SIZE;
+		timeBuffer[6] = timeBuffer[6] & YEAR_REG_SIZE;
+
+		asciiDate[0] = ((timeBuffer[0] & BCD_L)) + ASCII_NUMBER_MASK;
+		asciiDate[1] = ((timeBuffer[0] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[2] = ((timeBuffer[1] & BCD_L))+ASCII_NUMBER_MASK;
+		asciiDate[3] = ((timeBuffer[1] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[4] = ((timeBuffer[2] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[5] = ((timeBuffer[2] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[6] = ((timeBuffer[4] & BCD_L))+ASCII_NUMBER_MASK;
+		asciiDate[7] = ((timeBuffer[4] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[8] = ((timeBuffer[5] & BCD_L))+ASCII_NUMBER_MASK;
+		asciiDate[9] = ((timeBuffer[5] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[10] = ((timeBuffer[6] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+		asciiDate[11] = ((timeBuffer[6] & BCD_H)>>4)+ASCII_NUMBER_MASK;
+
+		for(qCounter;qCounter<=11;qCounter++){
+			xQueueSend(timeQueue,&asciiDate[qCounter],1000);
+		}
+		qCounter=0;
+
+//		PRINTF("Time: %c%c:%c%c:%c%c  Date: %c%c/%c%c/%c%c\r",  (char)asciiDate[5],
+//																(char)asciiDate[4],
+//																(char)asciiDate[3],
+//																(char)asciiDate[2],
+//																(char)asciiDate[1],
+//																(char)asciiDate[0],
+//																(char)asciiDate[11],
+//																(char)asciiDate[10],
+//																(char)asciiDate[9],
+//																(char)asciiDate[8],
+//																(char)asciiDate[7],
+//																(char)asciiDate[6]);
+
+		vTaskDelay(100);
+	}
+}
 
 
 
 void menu_Task(void *parameter){
+	size_t n;
+
+	uint8_t i=0;
+
+	menu_handle = xTaskGetCurrentTaskHandle();
 
 	while (1) {
 		/** VT100 command for text in Black and background in Grey*/
-		UART_userSend(parameter, "\033[0;30;47m",sizeof("\033[0;30;47m"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[0;30;47m",sizeof("\033[0;30;47m"));
 		/**VT100 command for hide cursor*/
-		UART_userSend(parameter, "\e[ ? 25 l", sizeof("\e[ ? 25 l"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\e[ ? 25 l", sizeof("\e[ ? 25 l"));
 		/*VT100 command for clearing the screen*/
-		UART_userSend(parameter, "\033[2J",sizeof("\033[2J"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[2J",sizeof("\033[2J"));
 
 		/** VT100 command for positioning the cursor in x and y position*/
-		UART_userSend(parameter, "\033[5;10H",sizeof("\033[5;10H"));
-		UART_userSend(parameter, "Sistemas Basados en Micros\r",sizeof("Sistemas Basados en Micros\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[5;10H",sizeof("\033[5;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "Sistemas Basados en Micros\r",sizeof("Sistemas Basados en Micros\r"));
 		/** VT100 command for positioning the cursor in x and y position*/
-		UART_userSend(parameter, "\033[7;10H",sizeof("\033[7;10H"));
-		UART_userSend(parameter, "    ITESO\r", sizeof("    ITESO\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[7;10H",sizeof("\033[7;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "    ITESO\r", sizeof("    ITESO\r"));
 		/** VT100 command for positioning the cursor in x and y position*/
 
-		UART_userSend(parameter, "\033[9;10H",sizeof("\033[9;10H"));
-		UART_userSend(parameter, " Opciones:\r",sizeof(" Opciones:\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[9;10H",sizeof("\033[9;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), " Opciones:\r",sizeof(" Opciones:\r"));
 
-		UART_userSend(parameter, "\033[11;10H",sizeof("\033[11;10H"));
-		UART_userSend(parameter, "  1)  Leer Memoria I2C\r",sizeof("  1)  Leer Memoria I2C\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[11;10H",sizeof("\033[11;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  1)  Leer Memoria I2C\r",sizeof("  1)  Leer Memoria I2C\r"));
 
-		UART_userSend(parameter, "\033[12;10H",sizeof("\033[12;10H"));
-		UART_userSend(parameter, "  2)  Escribir memoria I2C\r",sizeof("  2)  Escribir memoria I2C\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[12;10H",sizeof("\033[12;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  2)  Escribir memoria I2C\r",sizeof("  2)  Escribir memoria I2C\r"));
 
-		UART_userSend(parameter, "\033[13;10H",sizeof("\033[13;10H"));
-		UART_userSend(parameter, "  3)  Establecer Hora\r",sizeof("  3)  Establecer Hora\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[13;10H",sizeof("\033[13;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  3)  Establecer Hora\r",sizeof("  3)  Establecer Hora\r"));
 
-		UART_userSend(parameter, "\033[14;10H",sizeof("\033[14;10H"));
-		UART_userSend(parameter, "  4)  Establecer Fecha\r",sizeof("  4)  Establecer Fecha\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[14;10H",sizeof("\033[14;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  4)  Establecer Fecha\r",sizeof("  4)  Establecer Fecha\r"));
 
-		UART_userSend(parameter, "\033[15;10H",sizeof("\033[15;10H"));
-		UART_userSend(parameter, "  5)  Formato de hora\r",sizeof("  5)  Formato de hora\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[15;10H",sizeof("\033[15;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  5)  Formato de hora\r",sizeof("  5)  Formato de hora\r"));
 
-		UART_userSend(parameter, "\033[16;10H",sizeof("\033[16;10H"));
-		UART_userSend(parameter, "  6)  Leer hora\r",sizeof("  6)  Leer hora\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[16;10H",sizeof("\033[16;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  6)  Leer hora\r",sizeof("  6)  Leer hora\r"));
 
-		UART_userSend(parameter, "\033[17;10H",sizeof("\033[17;10H"));
-		UART_userSend(parameter, "  7)  Leer fecha\r",sizeof("  7)  Leer fecha\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[17;10H",sizeof("\033[17;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  7)  Leer fecha\r",sizeof("  7)  Leer fecha\r"));
 
-		UART_userSend(parameter, "\033[18;10H",sizeof("\033[18;10H"));
-		UART_userSend(parameter, "  8)  Comunicacion con terminal 2\r",sizeof("  8)  Comunicación con terminal 2\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[18;10H",sizeof("\033[18;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  8)  Comunicacion con terminal 2\r",sizeof("  8)  Comunicación con terminal 2\r"));
 
-		UART_userSend(parameter, "\033[19;10H",sizeof( "\033[19;10H"));
-		UART_userSend(parameter, "  9)  Eco en LCD\r",sizeof("  9)  Eco en LCD\r"));
+		UART_RTOS_Send(getHandleTeraTerm(), "\033[19;10H",sizeof( "\033[19;10H"));
+		UART_RTOS_Send(getHandleTeraTerm(), "  9)  Eco en LCD\r",sizeof("  9)  Eco en LCD\r"));
 
 
 
-		UART_userReceive(parameter, menu_buffer, sizeof(menu_buffer), &n);
+		UART_RTOS_Receive(getHandleTeraTerm(), menu_buffer, sizeof(menu_buffer), &n);
 
 
 		/**Condición para no acceder al mismo recurso**/
@@ -210,10 +217,10 @@ void menu_Task(void *parameter){
 		//if( (*de_menu_buffer == de_menu_buffer_b) ){
 		if( (de_menu_buffer == de_menu_buffer_b) && (0x38 != de_menu_buffer) ){
 			/*VT100 command for clearing the screen*/
-			UART_RTOS_Send(parameter, "\033[2J",sizeof("\033[2J"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\033[2J",sizeof("\033[2J"));
 			/** VT100 command for positioning the cursor in x and y position*/
-			UART_RTOS_Send(parameter, "\033[5;10H",sizeof("\033[5;10H"));
-			UART_RTOS_Send(parameter, "No es permitido acceder al mismo recurso",sizeof("No es permitido acceder al mismo recurso"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\033[5;10H",sizeof("\033[5;10H"));
+			UART_RTOS_Send(getHandleTeraTerm(), "No es permitido acceder al mismo recurso",sizeof("No es permitido acceder al mismo recurso"));
 			vTaskDelay(2500);
 		}else{//llave del else abajo del switch case
 
@@ -266,10 +273,10 @@ void menu_Task(void *parameter){
 			vTaskSuspend(menu_handle);
 			break;
 		default:
-			UART_RTOS_Send(parameter, "\n\r Seleccion no valida",sizeof("\n\r Seleccion no valida"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\n\r Seleccion no valida",sizeof("\n\r Seleccion no valida"));
 			vTaskDelay(1500);
 			/*VT100 command for clearing the screen*/
-			UART_RTOS_Send(parameter, "\033[2J",sizeof("\033[2J"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\033[2J",sizeof("\033[2J"));
 			break;
 		}//switch case
 		de_menu_buffer = 0;
@@ -277,7 +284,6 @@ void menu_Task(void *parameter){
 
 	}//while
 }//task
-
 void menu_Task_b(void *parameter){
 	size_t n;
 

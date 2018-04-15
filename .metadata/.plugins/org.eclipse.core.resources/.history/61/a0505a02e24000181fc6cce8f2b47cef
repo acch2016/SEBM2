@@ -30,7 +30,9 @@ static void UART_RTOS_Callback(UART_Type *base, uart_handle_t *state, status_t s
 
 
 uint8_t background_buffer[32];
+
 uint8_t background_buffer_b[32];
+
 
 void uart_init(UART_Type * base, uart_handle_config * handle){
 	//uint8_t initial;
@@ -72,6 +74,7 @@ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t l
 {
 	xSemaphoreTake(handle->txSemaphore, 0);
 
+
 	handle->txTransfer.data = (uint8_t *)buffer;
 	handle->txTransfer.dataSize = (uint32_t)length;
 
@@ -86,7 +89,36 @@ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t l
 
 void UART_userReceive(uart_handle_config *handle, const uint8_t *buffer, uint32_t length)
 {
-	xSemaphoreTake(handle->rxSemaphore, portMAX_DELAY);
+
+    EventBits_t ev;
+    size_t n = 0;
+    int retval = kStatus_Fail;
+    size_t local_received = 0;
+
+    if (NULL == handle->base)
+    {
+        /* Invalid handle. */
+        return kStatus_Fail;
+    }
+    if (0 == length)
+    {
+        if (received != NULL)
+        {
+            *received = n;
+        }
+        return 0;
+    }
+    if (NULL == buffer)
+    {
+        return kStatus_InvalidArgument;
+    }
+
+    /* New transfer can be performed only after current one is finished */
+    if (pdFALSE == xSemaphoreTake(handle->rxSemaphore, portMAX_DELAY))
+    {
+        /* We could not take the semaphore, exit with 0 data received */
+        return kStatus_Fail;
+    }
 
     handle->rxTransfer.data = buffer;
     handle->rxTransfer.dataSize = (uint32_t)length;
@@ -94,13 +126,48 @@ void UART_userReceive(uart_handle_config *handle, const uint8_t *buffer, uint32_
     /* Non-blocking call */
     UART_TransferReceiveNonBlocking(handle->base, handle->t_state, &handle->rxTransfer, &n);
 
-    xEventGroupWaitBits(handle->rxEvent,
-                             RTOS_UART_COMPLETE,
+    ev = xEventGroupWaitBits(handle->rxEvent,
+                             RTOS_UART_COMPLETE | RTOS_UART_RING_BUFFER_OVERRUN | RTOS_UART_HARDWARE_BUFFER_OVERRUN,
                              pdTRUE, pdFALSE, portMAX_DELAY);
+    if (ev & RTOS_UART_HARDWARE_BUFFER_OVERRUN)
+    {
+        /* Stop data transfer to application buffer, ring buffer is still active */
+        UART_TransferAbortReceive(handle->base, handle->t_state);
+        /* Prevent false indication of successful transfer in next call of UART_RTOS_Receive.
+           RTOS_UART_COMPLETE flag could be set meanwhile overrun is handled */
+        xEventGroupClearBits(handle->rxEvent, RTOS_UART_COMPLETE);
+        retval = kStatus_UART_RxHardwareOverrun;
+        local_received = 0;
+    }
+    else if (ev & RTOS_UART_RING_BUFFER_OVERRUN)
+    {
+        /* Stop data transfer to application buffer, ring buffer is still active */
+        UART_TransferAbortReceive(handle->base, handle->t_state);
+        /* Prevent false indication of successful transfer in next call of UART_RTOS_Receive.
+           RTOS_UART_COMPLETE flag could be set meanwhile overrun is handled */
+        xEventGroupClearBits(handle->rxEvent, RTOS_UART_COMPLETE);
+        retval = kStatus_UART_RxRingBufferOverrun;
+        local_received = 0;
+    }
+    else if (ev & RTOS_UART_COMPLETE)
+    {
+        retval = kStatus_Success;
+        local_received = length;
+    }
+
+    /* Prevent repetitive NULL check */
+    if (received != NULL)
+    {
+        *received = local_received;
+    }
 
     /* Enable next transfer. Current one is finished */
-    xSemaphoreGive(handle->rxSemaphore);
-
+    if (pdFALSE == xSemaphoreGive(handle->rxSemaphore))
+    {
+        /* We could not post the semaphore, exit with error */
+        retval = kStatus_Fail;
+    }
+    return retval;
 
 }
 

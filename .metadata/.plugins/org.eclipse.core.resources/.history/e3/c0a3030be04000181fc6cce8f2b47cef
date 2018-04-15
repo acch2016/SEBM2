@@ -30,7 +30,9 @@ static void UART_RTOS_Callback(UART_Type *base, uart_handle_t *state, status_t s
 
 
 uint8_t background_buffer[32];
+
 uint8_t background_buffer_b[32];
+
 
 void uart_init(UART_Type * base, uart_handle_config * handle){
 	//uint8_t initial;
@@ -72,6 +74,7 @@ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t l
 {
 	xSemaphoreTake(handle->txSemaphore, 0);
 
+
 	handle->txTransfer.data = (uint8_t *)buffer;
 	handle->txTransfer.dataSize = (uint32_t)length;
 
@@ -84,25 +87,7 @@ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t l
 
 }
 
-void UART_userReceive(uart_handle_config *handle, const uint8_t *buffer, uint32_t length)
-{
-	xSemaphoreTake(handle->rxSemaphore, portMAX_DELAY);
 
-    handle->rxTransfer.data = buffer;
-    handle->rxTransfer.dataSize = (uint32_t)length;
-
-    /* Non-blocking call */
-    UART_TransferReceiveNonBlocking(handle->base, handle->t_state, &handle->rxTransfer, &n);
-
-    xEventGroupWaitBits(handle->rxEvent,
-                             RTOS_UART_COMPLETE,
-                             pdTRUE, pdFALSE, portMAX_DELAY);
-
-    /* Enable next transfer. Current one is finished */
-    xSemaphoreGive(handle->rxSemaphore);
-
-
-}
 
 
 

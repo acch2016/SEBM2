@@ -27,14 +27,13 @@ typedef struct uart_params{
 	 SemaphoreHandle_t txSemaphore; /*!< TX semaphore for resource sharing */
 	 EventGroupHandle_t rxEvent;    /*!< RX completion event */
 	 EventGroupHandle_t txEvent;    /*!< TX completion event */
-	 void *t_state;                 /*!< Transactional state of the underlying driver */
 }uart_handle_config;
 
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
 uint8_t* UART_Echo(void);
-void uart_init(UART_Type * base, uart_handle_config * handle);
+void uart_init(void);
 void UART_userSend(uint8_t *data, size_t n);
 uart_rtos_handle_t* getHandleTeraTerm();
 uart_rtos_handle_t* getHandleBlueTerm();

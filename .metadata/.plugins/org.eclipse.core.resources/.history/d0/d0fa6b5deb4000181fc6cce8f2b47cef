@@ -155,51 +155,51 @@ void menu_Task(void *parameter){
 		/** VT100 command for text in Black and background in Grey*/
 		UART_userSend(parameter, "\033[0;30;47m",sizeof("\033[0;30;47m"));
 		/**VT100 command for hide cursor*/
-		UART_userSend(parameter, "\e[ ? 25 l", sizeof("\e[ ? 25 l"));
+		UART_userSend(getHandleTeraTerm(), "\e[ ? 25 l", sizeof("\e[ ? 25 l"));
 		/*VT100 command for clearing the screen*/
-		UART_userSend(parameter, "\033[2J",sizeof("\033[2J"));
+		UART_userSend(getHandleTeraTerm(), "\033[2J",sizeof("\033[2J"));
 
 		/** VT100 command for positioning the cursor in x and y position*/
-		UART_userSend(parameter, "\033[5;10H",sizeof("\033[5;10H"));
-		UART_userSend(parameter, "Sistemas Basados en Micros\r",sizeof("Sistemas Basados en Micros\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[5;10H",sizeof("\033[5;10H"));
+		UART_userSend(getHandleTeraTerm(), "Sistemas Basados en Micros\r",sizeof("Sistemas Basados en Micros\r"));
 		/** VT100 command for positioning the cursor in x and y position*/
-		UART_userSend(parameter, "\033[7;10H",sizeof("\033[7;10H"));
-		UART_userSend(parameter, "    ITESO\r", sizeof("    ITESO\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[7;10H",sizeof("\033[7;10H"));
+		UART_userSend(getHandleTeraTerm(), "    ITESO\r", sizeof("    ITESO\r"));
 		/** VT100 command for positioning the cursor in x and y position*/
 
-		UART_userSend(parameter, "\033[9;10H",sizeof("\033[9;10H"));
-		UART_userSend(parameter, " Opciones:\r",sizeof(" Opciones:\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[9;10H",sizeof("\033[9;10H"));
+		UART_userSend(getHandleTeraTerm(), " Opciones:\r",sizeof(" Opciones:\r"));
 
-		UART_userSend(parameter, "\033[11;10H",sizeof("\033[11;10H"));
-		UART_userSend(parameter, "  1)  Leer Memoria I2C\r",sizeof("  1)  Leer Memoria I2C\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[11;10H",sizeof("\033[11;10H"));
+		UART_userSend(getHandleTeraTerm(), "  1)  Leer Memoria I2C\r",sizeof("  1)  Leer Memoria I2C\r"));
 
-		UART_userSend(parameter, "\033[12;10H",sizeof("\033[12;10H"));
-		UART_userSend(parameter, "  2)  Escribir memoria I2C\r",sizeof("  2)  Escribir memoria I2C\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[12;10H",sizeof("\033[12;10H"));
+		UART_userSend(getHandleTeraTerm(), "  2)  Escribir memoria I2C\r",sizeof("  2)  Escribir memoria I2C\r"));
 
-		UART_userSend(parameter, "\033[13;10H",sizeof("\033[13;10H"));
-		UART_userSend(parameter, "  3)  Establecer Hora\r",sizeof("  3)  Establecer Hora\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[13;10H",sizeof("\033[13;10H"));
+		UART_userSend(getHandleTeraTerm(), "  3)  Establecer Hora\r",sizeof("  3)  Establecer Hora\r"));
 
-		UART_userSend(parameter, "\033[14;10H",sizeof("\033[14;10H"));
-		UART_userSend(parameter, "  4)  Establecer Fecha\r",sizeof("  4)  Establecer Fecha\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[14;10H",sizeof("\033[14;10H"));
+		UART_userSend(getHandleTeraTerm(), "  4)  Establecer Fecha\r",sizeof("  4)  Establecer Fecha\r"));
 
-		UART_userSend(parameter, "\033[15;10H",sizeof("\033[15;10H"));
-		UART_userSend(parameter, "  5)  Formato de hora\r",sizeof("  5)  Formato de hora\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[15;10H",sizeof("\033[15;10H"));
+		UART_userSend(getHandleTeraTerm(), "  5)  Formato de hora\r",sizeof("  5)  Formato de hora\r"));
 
-		UART_userSend(parameter, "\033[16;10H",sizeof("\033[16;10H"));
-		UART_userSend(parameter, "  6)  Leer hora\r",sizeof("  6)  Leer hora\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[16;10H",sizeof("\033[16;10H"));
+		UART_userSend(getHandleTeraTerm(), "  6)  Leer hora\r",sizeof("  6)  Leer hora\r"));
 
-		UART_userSend(parameter, "\033[17;10H",sizeof("\033[17;10H"));
-		UART_userSend(parameter, "  7)  Leer fecha\r",sizeof("  7)  Leer fecha\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[17;10H",sizeof("\033[17;10H"));
+		UART_userSend(getHandleTeraTerm(), "  7)  Leer fecha\r",sizeof("  7)  Leer fecha\r"));
 
-		UART_userSend(parameter, "\033[18;10H",sizeof("\033[18;10H"));
-		UART_userSend(parameter, "  8)  Comunicacion con terminal 2\r",sizeof("  8)  Comunicación con terminal 2\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[18;10H",sizeof("\033[18;10H"));
+		UART_userSend(getHandleTeraTerm(), "  8)  Comunicacion con terminal 2\r",sizeof("  8)  Comunicación con terminal 2\r"));
 
-		UART_userSend(parameter, "\033[19;10H",sizeof( "\033[19;10H"));
-		UART_userSend(parameter, "  9)  Eco en LCD\r",sizeof("  9)  Eco en LCD\r"));
+		UART_userSend(getHandleTeraTerm(), "\033[19;10H",sizeof( "\033[19;10H"));
+		UART_userSend(getHandleTeraTerm(), "  9)  Eco en LCD\r",sizeof("  9)  Eco en LCD\r"));
 
 
 
-		UART_userReceive(parameter, menu_buffer, sizeof(menu_buffer), &n);
+		UART_userReceive(getHandleTeraTerm(), menu_buffer, sizeof(menu_buffer), &n);
 
 
 		/**Condición para no acceder al mismo recurso**/
@@ -210,10 +210,10 @@ void menu_Task(void *parameter){
 		//if( (*de_menu_buffer == de_menu_buffer_b) ){
 		if( (de_menu_buffer == de_menu_buffer_b) && (0x38 != de_menu_buffer) ){
 			/*VT100 command for clearing the screen*/
-			UART_RTOS_Send(parameter, "\033[2J",sizeof("\033[2J"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\033[2J",sizeof("\033[2J"));
 			/** VT100 command for positioning the cursor in x and y position*/
-			UART_RTOS_Send(parameter, "\033[5;10H",sizeof("\033[5;10H"));
-			UART_RTOS_Send(parameter, "No es permitido acceder al mismo recurso",sizeof("No es permitido acceder al mismo recurso"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\033[5;10H",sizeof("\033[5;10H"));
+			UART_RTOS_Send(getHandleTeraTerm(), "No es permitido acceder al mismo recurso",sizeof("No es permitido acceder al mismo recurso"));
 			vTaskDelay(2500);
 		}else{//llave del else abajo del switch case
 
@@ -266,10 +266,10 @@ void menu_Task(void *parameter){
 			vTaskSuspend(menu_handle);
 			break;
 		default:
-			UART_RTOS_Send(parameter, "\n\r Seleccion no valida",sizeof("\n\r Seleccion no valida"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\n\r Seleccion no valida",sizeof("\n\r Seleccion no valida"));
 			vTaskDelay(1500);
 			/*VT100 command for clearing the screen*/
-			UART_RTOS_Send(parameter, "\033[2J",sizeof("\033[2J"));
+			UART_RTOS_Send(getHandleTeraTerm(), "\033[2J",sizeof("\033[2J"));
 			break;
 		}//switch case
 		de_menu_buffer = 0;

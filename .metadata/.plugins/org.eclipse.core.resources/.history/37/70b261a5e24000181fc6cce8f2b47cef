@@ -30,7 +30,9 @@ static void UART_RTOS_Callback(UART_Type *base, uart_handle_t *state, status_t s
 
 
 uint8_t background_buffer[32];
+
 uint8_t background_buffer_b[32];
+
 
 void uart_init(UART_Type * base, uart_handle_config * handle){
 	//uint8_t initial;

@@ -98,13 +98,13 @@ int main(void) {
   BOARD_I2C_ConfigurePins();
   BOARD_InitDebugConsole();
   i2c_init();
-  uart_handle_config * terminal_tt;
-  uart_init(UART0,terminal_tt);
-  uart_handle_config * terminal_bt;
-  uart_init(UART3,terminal_bt);
+  uart_handle_config * terminal;
+  uart_init(terminal);
 
-  xTaskCreate(menu_Task,"menu_task", 250,NULL, 1, terminal_tt);
-  xTaskCreate(menu_Task,"menu_task_b", 250,NULL, 1, terminal_bt);
+
+
+  xTaskCreate(menu_Task,"menu_task", 250,NULL, 1, terminal);
+  xTaskCreate(menu_Task,"menu_task_b", 250,NULL, 1, NULL);
 
   vTaskStartScheduler();
 

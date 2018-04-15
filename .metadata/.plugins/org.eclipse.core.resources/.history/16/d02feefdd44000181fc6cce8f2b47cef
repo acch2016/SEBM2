@@ -1,0 +1,97 @@
+/*
+ * uart.c
+ *
+ *  Created on: Mar 16, 2018
+ *      Author: Cursos
+ */
+
+#include "UART.h"
+
+size_t n;
+
+uint8_t background_buffer[32];
+uint8_t recv_buffer[1];
+
+uint8_t background_buffer_b[32];
+uint8_t recv_buffer_b[1];
+
+
+uart_rtos_handle_t handle;
+struct _uart_handle t_handle;
+
+uart_rtos_handle_t handle_b;
+struct _uart_handle t_handle_b;
+
+uart_rtos_config_t uart_config = {
+	.base = UART0,
+    .baudrate = UART_BAUDRATE,
+    .parity = kUART_ParityDisabled,
+    .stopbits = kUART_OneStopBit,
+    .buffer = background_buffer,
+    .buffer_size = sizeof(background_buffer),
+};
+
+uart_rtos_config_t uart_config_b = {
+		.base = UART3,
+		.baudrate = UART_BAUDRATE_B,
+		.parity = kUART_ParityDisabled,
+		.stopbits = kUART_OneStopBit,
+		.buffer =  background_buffer_b,
+		.buffer_size = sizeof(background_buffer_b), };
+
+void uart_init(UART_Type * base){
+	//uint8_t initial;
+	uart_config_t defcfg;
+	uart_handle_config handle;
+	if(base == UART0){
+
+
+	}
+
+    handle->txSemaphore = xSemaphoreCreateMutex();
+    handle->rxSemaphore = xSemaphoreCreateMutex();
+    handle->txEvent = xEventGroupCreate();
+    handle->rxEvent = xEventGroupCreate();
+    defcfg.baudRate_Bps = cfg->baudrate;
+    defcfg.parityMode = cfg->parity;
+    UART_GetDefaultConfig(&defcfg);
+    UART_Init(base, &defcfg, CLOCK_GetFreq(UART0_CLK_SRC));
+    UART_TransferCreateHandle(handle->base, handle->t_state, UART_RTOS_Callback, handle);
+    UART_TransferStartRingBuffer(handle->base, handle->t_state, cfg->buffer, cfg->buffer_size);
+
+    UART_EnableTx(handle->base, true);
+    UART_EnableRx(handle->base, true);
+
+	uart_config.srcclk = ;
+	UART_RTOS_Init(&handle, &t_handle, &uart_config);
+
+	uart_config_b.srcclk = CLOCK_GetFreq(UART3_CLK_SRC);
+	UART_RTOS_Init(&handle_b, &t_handle_b, &uart_config_b);
+
+
+}
+
+void UART_userSend(uint8_t *data, size_t n){
+	UART_RTOS_Send(&handle, data, n);
+}
+
+uint8_t* UART_Echo(void){
+
+	/* Send data */
+	UART_RTOS_Receive(&handle, recv_buffer, sizeof(recv_buffer), &n);
+	if (n > 0)        {
+		/* Echo the received data */
+		UART_RTOS_Send(&handle, (uint8_t *)recv_buffer, n);
+		return (uint8_t*)recv_buffer;
+	}
+}
+
+
+uart_rtos_handle_t* getHandleTeraTerm(){
+	return &handle;
+}
+
+uart_rtos_handle_t* getHandleBlueTerm(){
+	return &handle_b;
+}
+

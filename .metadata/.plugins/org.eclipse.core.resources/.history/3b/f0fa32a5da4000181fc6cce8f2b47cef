@@ -53,42 +53,6 @@
 /*!
  * @brief Application entry point.
  */
-//int main(void) {
-//  /* Init board hardware. */
-//
-//
-//  BOARD_InitPins();
-//  BOARD_BootClockRUN();
-//  BOARD_I2C_ConfigurePins();
-//  BOARD_InitDebugConsole();
-//  i2c_init();
-//  uart_init();
-//
-//  NVIC_SetPriority(UART0_RX_TX_IRQn, 5U);
-//  NVIC_SetPriority(UART3_RX_TX_IRQn, 6U);
-// // NVIC_SetPriority(UART4_RX_TX_IRQn, 6U);
-//
-//  createQueues();
-////vTaskSuspend();
-//  void * handle = getHandleBlueTerm();
-//  //xTaskCreate(getTime_task, "Time_Task", configMINIMAL_STACK_SIZE, NULL, 3, NULL);
-//  //xTaskCreate(sendTime, "UART_Task", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
-// // xTaskCreate(uart_init_Task, "uart_init_Task", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
-//
-//  xTaskCreate(menu_Task,"menu_task", 250,NULL, 1, NULL);
-//  xTaskCreate(menu_Task_b,"menu_task_b", 250,NULL, 1, NULL);
-//
-////  xTaskCreate(chat_Task, "chat_task", configMINIMAL_STACK_SIZE,NULL, 1, NULL);
-////  xTaskCreate(chat_Task_b, "chat_task_b", configMINIMAL_STACK_SIZE,NULL, 1, NULL);
-//
-//
-//  vTaskStartScheduler();
-//
-//  for(;;) { /* Infinite loop to avoid leaving the main function */
-//    __asm("NOP"); /* something to use as a breakpoint stop while looping */
-//  }
-//}
-
 int main(void) {
   /* Init board hardware. */
 
@@ -98,13 +62,25 @@ int main(void) {
   BOARD_I2C_ConfigurePins();
   BOARD_InitDebugConsole();
   i2c_init();
-  uart_handle_config * terminal_tt;
-  uart_init(UART0,terminal_tt);
-  uart_handle_config * terminal_bt;
-  uart_init(UART3,terminal_bt);
+  uart_init();
 
-  xTaskCreate(menu_Task,"menu_task", 250,NULL, 1, terminal_tt);
-  xTaskCreate(menu_Task,"menu_task_b", 250,NULL, 1, terminal_bt);
+  NVIC_SetPriority(UART0_RX_TX_IRQn, 5U);
+  NVIC_SetPriority(UART3_RX_TX_IRQn, 6U);
+ // NVIC_SetPriority(UART4_RX_TX_IRQn, 6U);
+
+  createQueues();
+//vTaskSuspend();
+  void * handle = getHandleBlueTerm();
+  //xTaskCreate(getTime_task, "Time_Task", configMINIMAL_STACK_SIZE, NULL, 3, NULL);
+  //xTaskCreate(sendTime, "UART_Task", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+ // xTaskCreate(uart_init_Task, "uart_init_Task", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+
+  xTaskCreate(menu_Task,"menu_task", 250,NULL, 1, NULL);
+  xTaskCreate(menu_Task_b,"menu_task_b", 250,NULL, 1, NULL);
+
+//  xTaskCreate(chat_Task, "chat_task", configMINIMAL_STACK_SIZE,NULL, 1, NULL);
+//  xTaskCreate(chat_Task_b, "chat_task_b", configMINIMAL_STACK_SIZE,NULL, 1, NULL);
+
 
   vTaskStartScheduler();
 
