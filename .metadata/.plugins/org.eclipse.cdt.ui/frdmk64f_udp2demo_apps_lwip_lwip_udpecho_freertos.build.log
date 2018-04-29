@@ -1,0 +1,6 @@
+22:19:51 **** Incremental Build of configuration Debug for project frdmk64f_udp2demo_apps_lwip_lwip_udpecho_freertos ****
+make -r -j8 all 
+make: Nothing to be done for `all'.
+
+22:19:51 Build Finished (took 359ms)
+
