@@ -11,6 +11,11 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
+#define N 100
+uint16_t ping[N];
+uint16_t pong[N];
+
+//counter
 static void
 server_thread(void *arg)
 {
@@ -25,6 +30,7 @@ server_thread(void *arg)
 	conn = netconn_new(NETCONN_UDP);
 	netconn_bind(conn, IP_ADDR_ANY, 50005);
 	//LWIP_ERROR("udpecho: invalid conn", (conn != NULL), return;);
+	uint8_t dacBuffer[60];
 
 	while (1)
 	{
@@ -32,7 +38,14 @@ server_thread(void *arg)
 		netbuf_data(buf, (void**)&msg, &len);
 		netbuf_delete(buf);
 
+		for(uint8_t indice = 0;indice < len; indice++ ){
+			dacBuffer[indice]= *msg;
+			msg++;
+		}
+
 	}
+
+
 }
 
 /*-----------------------------------------------------------------------------------*/
