@@ -53,7 +53,7 @@ server_thread(void *arg)
 		
 	if (netbuf_copy(buf, buffer, sizeof(buffer)) != buf->p->tot_len) {
 			LWIP_DEBUGF(LWIP_DBG_ON, ("netbuf_copy failed\n"));
-		} else {
+	} else {
 			if (EVENT_BIT & xEventGroupGetBits(event)) {
 				netbuf_copy(buf, ping, N);
 				xEventGroupClearBits(event, EVENT_BIT);
@@ -96,6 +96,7 @@ server_thread(void *arg)
 void
 udpecho_init(void)
 {
+	event = xEventGroupCreate();
 //	sys_thread_new("client", client_thread, NULL, 300, 1);
 	sys_thread_new("server", server_thread, NULL, 300, 2);
 
