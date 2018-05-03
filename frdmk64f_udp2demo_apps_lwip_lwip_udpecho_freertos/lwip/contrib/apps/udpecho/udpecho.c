@@ -1,4 +1,3 @@
-
 #include "udpecho.h"
 
 #include "lwip/opt.h"
@@ -29,7 +28,7 @@ server_thread(void *arg)
 	uint16_t *msg;
 
 	uint16_t len;
-	char buffer[4096];
+	uint16_t buffer[4096];
 
 	LWIP_UNUSED_ARG(arg);
 	conn = netconn_new(NETCONN_UDP);
@@ -41,19 +40,21 @@ server_thread(void *arg)
 	{
 		netconn_recv(conn, &buf);
 		netbuf_data(buf, (void**)&msg, &len);
-		
-		PRINTF("%i",msg[0]);
-		
-		netbuf_delete(buf);
+
+		//PRINTF("%i" ,msg[0]);
+
+
+
 
 // 		for(uint8_t indice = 0;indice < len; indice++ ){
 // 			dacBuffer[indice]= *msg;
 // 			msg++;
 // 		}
-		
+
 	if (netbuf_copy(buf, buffer, sizeof(buffer)) != buf->p->tot_len) {
 			LWIP_DEBUGF(LWIP_DBG_ON, ("netbuf_copy failed\n"));
 	} else {
+			PRINTF("%i", buffer[0]);
 			if (EVENT_BIT & xEventGroupGetBits(event)) {
 				netbuf_copy(buf, ping, N);
 				xEventGroupClearBits(event, EVENT_BIT);
@@ -61,7 +62,9 @@ server_thread(void *arg)
 				netbuf_copy(buf, pong, N);
 				xEventGroupSetBits(event, EVENT_BIT);
 			}
-		}	
+		}
+
+	netbuf_delete(buf);
 
 	}
 
