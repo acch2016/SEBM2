@@ -53,6 +53,7 @@
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
+#define DEMO_DAC_BASEADDR DAC0
 
 /* IP address configuration. */
 #define configIP_ADDR0 192
@@ -92,6 +93,8 @@
 * Prototypes
 ******************************************************************************/
 
+/* Initialize ADC16 & DAC */
+static void DAC_Init(void);
 /*******************************************************************************
 * Variables
 ******************************************************************************/
@@ -103,6 +106,39 @@
 /*!
  * @brief Initializes lwIP stack.
  */
+
+static void DAC_Init(void)
+{
+    adc16_config_t adc16ConfigStruct;
+    dac_config_t dacConfigStruct;
+
+    /* Configure the DAC. */
+    /*
+     * dacConfigStruct.referenceVoltageSource = kDAC_ReferenceVoltageSourceVref2;
+     * dacConfigStruct.enableLowPowerMode = false;
+     */
+    DAC_GetDefaultConfig(&dacConfigStruct);
+    DAC_Init(DEMO_DAC_BASEADDR, &dacConfigStruct);
+    DAC_Enable(DEMO_DAC_BASEADDR, true); /* Enable output. */
+}
+
+
+void init_pit(void *arg)
+{
+    pit_config_t pit_config;
+    PIT_GetDefaultConfig(&pit_config);
+    //CLOCK_EnableClock(kCLOCK_Pit0);
+    //MCR
+    PIT_Init(PIT, &pit_config);
+    PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, CLOCK_GetBusClkFreq()*(1.5));
+    PIT_GetStatusFlags(PIT, kPIT_Chnl_0);
+    PIT_StartTimer(PIT, kPIT_Chnl_0);
+    PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
+    NVIC_EnableIRQ(PIT0_IRQn);
+}
+
+
+
 static void stack_init(void *arg)
 {
     static struct netif fsl_netif0;
@@ -140,6 +176,13 @@ static void stack_init(void *arg)
     vTaskDelete(NULL);
 }
 
+void PIT0_IRQHandler()
+{
+PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
+
+//poner logica del DAC aqui
+}
+
 /*!
  * @brief Main function
  */
@@ -151,6 +194,8 @@ int main(void)
     BOARD_InitDebugConsole();
     /* Disable SYSMPU. */
     base->CESR &= ~SYSMPU_CESR_VLD_MASK;
+
+    xTaskCreate(init_pit, "init_pit", configMINIMAL_STACK_SIZE+100, NULL, configMAX_PRIORITIES, NULL);
 
     /* Initialize lwIP from thread */
     if(sys_thread_new("main", stack_init, NULL, INIT_THREAD_STACKSIZE, INIT_THREAD_PRIO) == NULL)
