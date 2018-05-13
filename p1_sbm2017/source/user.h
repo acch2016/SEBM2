@@ -13,8 +13,7 @@
 //#include "fsl_debug_console.h"
 #include "semphr.h"
 #include "task.h"
-#include "UART.h"
-#include "fsl_uart_freertos.h"
+#include "uart.h"
 
 #define RTC_DEVICE_ADD 0x6F
 
@@ -70,9 +69,6 @@ void echo_Task_b(void *parameter);
 
 void createQueues(void);
 
-static QueueHandle_t timeQueue;
-static uint8_t fromQueue;
-static SemaphoreHandle_t xMutex;
 
 //uint8_t* queueToUART();//
 

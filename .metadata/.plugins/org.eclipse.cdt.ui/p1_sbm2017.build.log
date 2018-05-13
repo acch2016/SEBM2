@@ -1,12 +1,402 @@
-13:31:13 **** Incremental Build of configuration Debug for project p1_sbm2017 ****
+22:58:04 **** Incremental Build of configuration Debug for project p1_sbm2017 ****
 make -r -j4 all 
-m.AllocationBase 0x0, m.BaseAddress 0x71110000, m.RegionSize 0x30000, m.State 0x10000
-C:\nxp\MCUXpressoIDE_10.1.1_606\ide\msys\bin\sh.exe: *** Couldn't reserve space for cygwin's heap (0x71110000 <0x2410000>) in child, Win32 error 0
-make: *** [utilities/fsl_debug_console.o] Error 1
+Building file: ../source/p1_sbm2017.c
+Building file: ../source/uart.c
+Building file: ../source/user.c
+Invoking: MCU C Compiler
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=0 -D__MCUXPRESSO -DDEBUG -DSDK_OS_FREE_RTOS -DFSL_RTOS_FREE_RTOS -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\eeee\SEBM2\p1_sbm2017\board" -I"C:\eeee\SEBM2\p1_sbm2017\source" -I"C:\eeee\SEBM2\p1_sbm2017" -I"C:\eeee\SEBM2\p1_sbm2017\freertos\include" -I"C:\eeee\SEBM2\p1_sbm2017\freertos\portable" -I"C:\eeee\SEBM2\p1_sbm2017\drivers" -I"C:\eeee\SEBM2\p1_sbm2017\CMSIS" -I"C:\eeee\SEBM2\p1_sbm2017\drivers\freertos" -I"C:\eeee\SEBM2\p1_sbm2017\utilities" -I"C:\eeee\SEBM2\p1_sbm2017\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/p1_sbm2017.d" -MT"source/p1_sbm2017.o" -MT"source/p1_sbm2017.d" -o "source/p1_sbm2017.o" "../source/p1_sbm2017.c"
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=0 -D__MCUXPRESSO -DDEBUG -DSDK_OS_FREE_RTOS -DFSL_RTOS_FREE_RTOS -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\eeee\SEBM2\p1_sbm2017\board" -I"C:\eeee\SEBM2\p1_sbm2017\source" -I"C:\eeee\SEBM2\p1_sbm2017" -I"C:\eeee\SEBM2\p1_sbm2017\freertos\include" -I"C:\eeee\SEBM2\p1_sbm2017\freertos\portable" -I"C:\eeee\SEBM2\p1_sbm2017\drivers" -I"C:\eeee\SEBM2\p1_sbm2017\CMSIS" -I"C:\eeee\SEBM2\p1_sbm2017\drivers\freertos" -I"C:\eeee\SEBM2\p1_sbm2017\utilities" -I"C:\eeee\SEBM2\p1_sbm2017\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/uart.d" -MT"source/uart.o" -MT"source/uart.d" -o "source/uart.o" "../source/uart.c"
+arm-none-eabi-gcc -D__REDLIB__ -DPRINTF_FLOAT_ENABLE=0 -D__USE_CMSIS -DCR_INTEGER_PRINTF -DSDK_DEBUGCONSOLE=0 -D__MCUXPRESSO -DDEBUG -DSDK_OS_FREE_RTOS -DFSL_RTOS_FREE_RTOS -DCPU_MK64FN1M0VLL12 -DCPU_MK64FN1M0VLL12_cm4 -I"C:\eeee\SEBM2\p1_sbm2017\board" -I"C:\eeee\SEBM2\p1_sbm2017\source" -I"C:\eeee\SEBM2\p1_sbm2017" -I"C:\eeee\SEBM2\p1_sbm2017\freertos\include" -I"C:\eeee\SEBM2\p1_sbm2017\freertos\portable" -I"C:\eeee\SEBM2\p1_sbm2017\drivers" -I"C:\eeee\SEBM2\p1_sbm2017\CMSIS" -I"C:\eeee\SEBM2\p1_sbm2017\drivers\freertos" -I"C:\eeee\SEBM2\p1_sbm2017\utilities" -I"C:\eeee\SEBM2\p1_sbm2017\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -D__REDLIB__ -specs=redlib.specs -MMD -MP -MF"source/user.d" -MT"source/user.o" -MT"source/user.d" -o "source/user.o" "../source/user.c"
+../source/p1_sbm2017.c: In function 'main':
+../source/p1_sbm2017.c:98:3: warning: implicit declaration of function 'BOARD_I2C_ConfigurePins' [-Wimplicit-function-declaration]
+   BOARD_I2C_ConfigurePins();
+   ^~~~~~~~~~~~~~~~~~~~~~~
+../source/p1_sbm2017.c:106:51: warning: passing argument 6 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+   xTaskCreate(menu_Task,"menu_task", 250,NULL, 1, terminal_tt);
+                                                   ^~~~~~~~~~~
+In file included from ../source/p1_sbm2017.c:44:0:
+C:\eeee\SEBM2\p1_sbm2017\freertos\include/task.h:360:13: note: expected 'void ** const' but argument is of type 'uart_handle_config * {aka struct uart_params *}'
+  BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+             ^~~~~~~~~~~
+../source/p1_sbm2017.c:107:53: warning: passing argument 6 of 'xTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+   xTaskCreate(menu_Task,"menu_task_b", 250,NULL, 1, terminal_bt);
+                                                     ^~~~~~~~~~~
+In file included from ../source/p1_sbm2017.c:44:0:
+C:\eeee\SEBM2\p1_sbm2017\freertos\include/task.h:360:13: note: expected 'void ** const' but argument is of type 'uart_handle_config * {aka struct uart_params *}'
+  BaseType_t xTaskCreate( TaskFunction_t pxTaskCode,
+             ^~~~~~~~~~~
+../source/p1_sbm2017.c:102:3: warning: 'terminal_tt' is used uninitialized in this function [-Wuninitialized]
+   uart_init(UART0,terminal_tt);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../source/p1_sbm2017.c:104:3: warning: 'terminal_bt' is used uninitialized in this function [-Wuninitialized]
+   uart_init(UART3,terminal_bt);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../source/uart.c: In function 'UART_RTOS_Callback':
+../source/uart.c:13:38: warning: variable 'xResult' set but not used [-Wunused-but-set-variable]
+  BaseType_t xHigherPriorityTaskWoken,xResult;
+                                      ^~~~~~~
+../source/user.c: In function 'menu_Task':
+../source/user.c:156:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[0;30;47m",sizeof("\033[0;30;47m"));
+                          ^~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:158:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\e[ ? 25 l", sizeof("\e[ ? 25 l"));
+                          ^~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:160:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[2J",sizeof("\033[2J"));
+                          ^~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:163:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[5;10H",sizeof("\033[5;10H"));
+                          ^~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:164:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "Sistemas Basados en Micros\r",sizeof("Sistemas Basados en Micros\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:166:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[7;10H",sizeof("\033[7;10H"));
+                          ^~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:167:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "    ITESO\r", sizeof("    ITESO\r"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:170:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[9;10H",sizeof("\033[9;10H"));
+                          ^~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:171:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, " Opciones:\r",sizeof(" Opciones:\r"));
+                          ^~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:173:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[11;10H",sizeof("\033[11;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:174:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  1)  Leer Memoria I2C\r",sizeof("  1)  Leer Memoria I2C\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:176:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[12;10H",sizeof("\033[12;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:177:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  2)  Escribir memoria I2C\r",sizeof("  2)  Escribir memoria I2C\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:179:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[13;10H",sizeof("\033[13;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:180:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  3)  Establecer Hora\r",sizeof("  3)  Establecer Hora\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:182:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[14;10H",sizeof("\033[14;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:183:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  4)  Establecer Fecha\r",sizeof("  4)  Establecer Fecha\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:185:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[15;10H",sizeof("\033[15;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:186:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  5)  Formato de hora\r",sizeof("  5)  Formato de hora\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:188:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[16;10H",sizeof("\033[16;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:189:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  6)  Leer hora\r",sizeof("  6)  Leer hora\r"));
+                          ^~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:191:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[17;10H",sizeof("\033[17;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:192:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  7)  Leer fecha\r",sizeof("  7)  Leer fecha\r"));
+                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:194:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[18;10H",sizeof("\033[18;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:195:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  8)  Comunicacion con terminal 2\r",sizeof("  8)  Comunicación con terminal 2\r"));
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:197:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "\033[19;10H",sizeof( "\033[19;10H"));
+                          ^~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:198:26: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+   UART_userSend(handler, "  9)  Eco en LCD\r",sizeof("  9)  Eco en LCD\r"));
+                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:213:27: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+    UART_userSend(handler, "\033[2J",sizeof("\033[2J"));
+                           ^~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:215:29: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+    UART_userSend(parameter, "\033[5;10H",sizeof("\033[5;10H"));
+                             ^~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:216:29: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+    UART_userSend(parameter, "No es permitido acceder al mismo recurso",sizeof("No es permitido acceder al mismo recurso"));
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:269:27: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+    UART_userSend(handler, "\n\r Seleccion no valida",sizeof("\n\r Seleccion no valida"));
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c:272:27: warning: pointer targets in passing argument 2 of 'UART_userSend' differ in signedness [-Wpointer-sign]
+    UART_userSend(handler, "\033[2J",sizeof("\033[2J"));
+                           ^~~~~~~~~
+In file included from ../source/user.h:16:0,
+                 from ../source/user.c:10:
+../source/uart.h:49:6: note: expected 'const uint8_t * {aka const unsigned char *}' but argument is of type 'char *'
+ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+      ^~~~~~~~~~~~~
+../source/user.c: In function 'menu_Task_b':
+../source/user.c:288:3: warning: implicit declaration of function 'UART_RTOS_Send' [-Wimplicit-function-declaration]
+   UART_RTOS_Send(getHandleBlueTerm(), "\033[0;30;47m",sizeof("\033[0;30;47m"));
+   ^~~~~~~~~~~~~~
+../source/user.c:288:18: warning: implicit declaration of function 'getHandleBlueTerm' [-Wimplicit-function-declaration]
+   UART_RTOS_Send(getHandleBlueTerm(), "\033[0;30;47m",sizeof("\033[0;30;47m"));
+                  ^~~~~~~~~~~~~~~~~
+../source/user.c:334:3: warning: implicit declaration of function 'UART_RTOS_Receive' [-Wimplicit-function-declaration]
+   UART_RTOS_Receive(getHandleBlueTerm(), menu_buffer_b, sizeof(menu_buffer_b), &n);
+   ^~~~~~~~~~~~~~~~~
+../source/user.c: In function 'read_Mem_Task':
+../source/user.c:428:18: warning: implicit declaration of function 'getHandleTeraTerm' [-Wimplicit-function-declaration]
+   UART_RTOS_Send(getHandleTeraTerm(), "\033[2J", sizeof("\033[2J"));
+                  ^~~~~~~~~~~~~~~~~
+../source/user.c:417:11: warning: variable 'addresss' set but not used [-Wunused-but-set-variable]
+  uint16_t addresss[]={0};
+           ^~~~~~~~
+../source/user.c: In function 'read_Mem_Task_b':
+../source/user.c:529:10: warning: unused variable 'funcJ_buffer' [-Wunused-variable]
+  uint8_t funcJ_buffer[1];
+          ^~~~~~~~~~~~
+../source/user.c: In function 'write_Mem_Task':
+../source/user.c:636:10: warning: variable 'writing_content' set but not used [-Wunused-but-set-variable]
+  uint8_t writing_content[32]={0};
+          ^~~~~~~~~~~~~~~
+../source/user.c: In function 'write_Mem_Task_b':
+../source/user.c:721:10: warning: variable 'writing_content' set but not used [-Wunused-but-set-variable]
+  uint8_t writing_content[32]={0};
+          ^~~~~~~~~~~~~~~
+../source/user.c: In function 'set_hour_Task':
+../source/user.c:816:10: warning: variable 'hour' set but not used [-Wunused-but-set-variable]
+  uint8_t hour[6]={0};
+          ^~~~
+../source/user.c: In function 'set_hour_Task_b':
+../source/user.c:882:10: warning: variable 'hour' set but not used [-Wunused-but-set-variable]
+  uint8_t hour[6]={0};
+          ^~~~
+../source/user.c: In function 'set_date_Task':
+../source/user.c:951:10: warning: variable 'date' set but not used [-Wunused-but-set-variable]
+  uint8_t date[6]={0};
+          ^~~~
+../source/user.c: In function 'set_date_Task_b':
+../source/user.c:1016:10: warning: variable 'date' set but not used [-Wunused-but-set-variable]
+  uint8_t date[6]={0};
+          ^~~~
+../source/user.c: In function 'read_hour_Task':
+../source/user.c:1225:38: error: invalid type argument of '->' (have 'int')
+   while(ENTER != *getHandleTeraTerm()->rxTransfer.data ){
+                                      ^~
+../source/user.c:1235:54: error: invalid type argument of '->' (have 'int')
+   UART_TransferReceiveNonBlocking(getHandleTeraTerm()->base, getHandleTeraTerm()->t_state, &getHandleTeraTerm()->rxTransfer, &n);
+                                                      ^~
+../source/user.c:1235:81: error: invalid type argument of '->' (have 'int')
+   UART_TransferReceiveNonBlocking(getHandleTeraTerm()->base, getHandleTeraTerm()->t_state, &getHandleTeraTerm()->rxTransfer, &n);
+                                                                                 ^~
+../source/user.c:1235:112: error: invalid type argument of '->' (have 'int')
+   UART_TransferReceiveNonBlocking(getHandleTeraTerm()->base, getHandleTeraTerm()->t_state, &getHandleTeraTerm()->rxTransfer, &n);
+                                                                                                                ^~
+../source/user.c: In function 'read_hour_Task_b':
+../source/user.c:1250:38: error: invalid type argument of '->' (have 'int')
+   while(ENTER != *getHandleBlueTerm()->rxTransfer.data ){
+                                      ^~
+../source/user.c:1260:54: error: invalid type argument of '->' (have 'int')
+   UART_TransferReceiveNonBlocking(getHandleBlueTerm()->base, getHandleBlueTerm()->t_state, &getHandleBlueTerm()->rxTransfer, &n);
+                                                      ^~
+../source/user.c:1260:81: error: invalid type argument of '->' (have 'int')
+   UART_TransferReceiveNonBlocking(getHandleBlueTerm()->base, getHandleBlueTerm()->t_state, &getHandleBlueTerm()->rxTransfer, &n);
+                                                                                 ^~
+../source/user.c:1260:112: error: invalid type argument of '->' (have 'int')
+   UART_TransferReceiveNonBlocking(getHandleBlueTerm()->base, getHandleBlueTerm()->t_state, &getHandleBlueTerm()->rxTransfer, &n);
+                                                                                                                ^~
+../source/user.c: In function 'read_date_Task':
+../source/user.c:1277:39: error: invalid type argument of '->' (have 'int')
+   while (ENTER != *getHandleTeraTerm()->rxTransfer.data) {
+                                       ^~
+../source/user.c:1287:55: error: invalid type argument of '->' (have 'int')
+    UART_TransferReceiveNonBlocking(getHandleTeraTerm()->base, getHandleTeraTerm()->t_state, &getHandleTeraTerm()->rxTransfer, &n);
+                                                       ^~
+../source/user.c:1287:82: error: invalid type argument of '->' (have 'int')
+    UART_TransferReceiveNonBlocking(getHandleTeraTerm()->base, getHandleTeraTerm()->t_state, &getHandleTeraTerm()->rxTransfer, &n);
+                                                                                  ^~
+../source/user.c:1287:113: error: invalid type argument of '->' (have 'int')
+    UART_TransferReceiveNonBlocking(getHandleTeraTerm()->base, getHandleTeraTerm()->t_state, &getHandleTeraTerm()->rxTransfer, &n);
+                                                                                                                 ^~
+../source/user.c: In function 'read_date_Task_b':
+../source/user.c:1301:39: error: invalid type argument of '->' (have 'int')
+   while (ENTER != *getHandleBlueTerm()->rxTransfer.data) {
+                                       ^~
+../source/user.c:1311:55: error: invalid type argument of '->' (have 'int')
+    UART_TransferReceiveNonBlocking(getHandleBlueTerm()->base, getHandleBlueTerm()->t_state, &getHandleBlueTerm()->rxTransfer, &n);
+                                                       ^~
+../source/user.c:1311:82: error: invalid type argument of '->' (have 'int')
+    UART_TransferReceiveNonBlocking(getHandleBlueTerm()->base, getHandleBlueTerm()->t_state, &getHandleBlueTerm()->rxTransfer, &n);
+                                                                                  ^~
+../source/user.c:1311:113: error: invalid type argument of '->' (have 'int')
+    UART_TransferReceiveNonBlocking(getHandleBlueTerm()->base, getHandleBlueTerm()->t_state, &getHandleBlueTerm()->rxTransfer, &n);
+                                                                                                                 ^~
+make: *** [source/user.o] Error 1
 make: *** Waiting for unfinished jobs....
-m.AllocationBase 0x0, m.BaseAddress 0x71110000, m.RegionSize 0x30000, m.State 0x10000
-C:\nxp\MCUXpressoIDE_10.1.1_606\ide\msys\bin\sh.exe: *** Couldn't reserve space for cygwin's heap (0x71110000 <0x2620000>) in child, Win32 error 0
-make: *** [utilities/fsl_io.o] Error 1
+Finished building: ../source/uart.c
+Finished building: ../source/p1_sbm2017.c
+ 
+ 
 
-13:31:14 Build Finished (took 281ms)
+22:58:05 Build Finished (took 1s.29ms)
 

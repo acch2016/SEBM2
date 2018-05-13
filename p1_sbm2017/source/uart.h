@@ -9,15 +9,27 @@
 #ifndef SOURCE_UART_H_
 #define SOURCE_UART_H_
 
+#include "MK64F12.h"
+#include "FreeRTOS.h"
+
+#include "queue.h"
+
+#include "semphr.h"
+#include "task.h"
+
 #include "fsl_uart.h"
 #include "pin_mux.h"
 #include "clock_config.h"
+#include "event_groups.h"
+
 
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
 #define UART_BAUDRATE 115200U
 #define UART_BAUDRATE_B 9600U
+
+#define RTOS_UART_COMPLETE 0x1
 
 typedef struct uart_params{
 	 UART_Type *base;               /*!< UART base address */
@@ -33,11 +45,9 @@ typedef struct uart_params{
 /*******************************************************************************
  * Prototypes
  ******************************************************************************/
-uint8_t* UART_Echo(void);
 void uart_init(UART_Type * base, uart_handle_config * handle);
-void UART_userSend(uint8_t *data, size_t n);
-uart_rtos_handle_t* getHandleTeraTerm();
-uart_rtos_handle_t* getHandleBlueTerm();
+void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t length);
+void UART_userReceive(uart_handle_config *handle, uint8_t *buffer, uint32_t length);
 
 
 

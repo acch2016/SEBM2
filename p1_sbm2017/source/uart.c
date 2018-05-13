@@ -5,12 +5,12 @@
  *      Author: Cursos
  */
 
-#include "UART.h"
+#include "uart.h"
 
 static void UART_RTOS_Callback(UART_Type *base, uart_handle_t *state, status_t status, void *param)
 {
 	uart_handle_config *handle = (uart_handle_config *)param;
-	BaseType_t xHigherPriorityTaskWoken, xResult;
+	BaseType_t xHigherPriorityTaskWoken,xResult;
 
 	xHigherPriorityTaskWoken = pdFALSE;
 	xResult = pdFAIL;
@@ -36,7 +36,7 @@ void uart_init(UART_Type * base, uart_handle_config * handle){
 	//uint8_t initial;
 	uart_config_t defcfg;
 	uint32_t scrclock;
-	uint8_t buffer;
+	uint8_t* buffer;
 	UART_GetDefaultConfig(&defcfg);
 	handle->base = base;
 
@@ -84,7 +84,7 @@ void UART_userSend(uart_handle_config *handle, const uint8_t *buffer, uint32_t l
 
 }
 
-void UART_userReceive(uart_handle_config *handle, const uint8_t *buffer, uint32_t length)
+void UART_userReceive(uart_handle_config *handle, uint8_t *buffer, uint32_t length)
 {
 	xSemaphoreTake(handle->rxSemaphore, portMAX_DELAY);
 
@@ -92,7 +92,7 @@ void UART_userReceive(uart_handle_config *handle, const uint8_t *buffer, uint32_
     handle->rxTransfer.dataSize = (uint32_t)length;
 
     /* Non-blocking call */
-    UART_TransferReceiveNonBlocking(handle->base, handle->t_state, &handle->rxTransfer, &n);
+    UART_TransferReceiveNonBlocking(handle->base, handle->t_state, &handle->rxTransfer, &length);
 
     xEventGroupWaitBits(handle->rxEvent,
                              RTOS_UART_COMPLETE,

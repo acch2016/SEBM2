@@ -1,0 +1,109 @@
+/*
+ * uart.c
+ *
+ *  Created on: Mar 16, 2018
+ *      Author: Cursos
+ */
+
+#include "uart.h"
+
+static void UART_RTOS_Callback(UART_Type *base, uart_handle_t *state, status_t status, void *param)
+{
+	uart_handle_config *handle = (uart_handle_config *)param;
+	BaseType_t xHigherPriorityTaskWoken, xResult;
+
+	xHigherPriorityTaskWoken = pdFALSE;
+	xResult = pdFAIL;
+
+	if (status == kStatus_UART_RxIdle)
+	{
+		xResult = xEventGroupSetBitsFromISR(handle->rxEvent, RTOS_UART_COMPLETE, &xHigherPriorityTaskWoken);
+	}
+	else if (status == kStatus_UART_TxIdle)
+	{
+		xResult = xEventGroupSetBitsFromISR(handle->txEvent, RTOS_UART_COMPLETE, &xHigherPriorityTaskWoken);
+	}
+
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
+}
+
+
+uint8_t background_buffer[32];
+uint8_t background_buffer_b[32];
+
+void uart_init(UART_Type * base, uart_handle_config * handle){
+	//uint8_t initial;
+	uart_config_t defcfg;
+	uint32_t scrclock;
+	uint8_t buffer;
+	UART_GetDefaultConfig(&defcfg);
+	handle->base = base;
+
+	if(base == UART0){
+		defcfg.baudRate_Bps = UART_BAUDRATE;
+		defcfg.parityMode = kUART_ParityDisabled;
+		scrclock = CLOCK_GetFreq(UART0_CLK_SRC);
+		buffer = background_buffer;
+		NVIC_SetPriority(UART0_RX_TX_IRQn, 5U);
+	}else{
+		defcfg.baudRate_Bps = UART_BAUDRATE_B;
+		defcfg.parityMode = kUART_ParityDisabled;
+		scrclock = CLOCK_GetFreq(UART3_CLK_SRC);
+		buffer = background_buffer_b;
+		NVIC_SetPriority(UART3_RX_TX_IRQn, 6U);
+	}
+
+	handle->txSemaphore = xSemaphoreCreateMutex();
+	handle->rxSemaphore = xSemaphoreCreateMutex();
+	handle->txEvent = xEventGroupCreate();
+	handle->rxEvent = xEventGroupCreate();
+
+	UART_Init(handle->base, &defcfg, scrclock);
+	UART_TransferCreateHandle(handle->base, handle->t_state, UART_RTOS_Callback, handle);
+	UART_TransferStartRingBuffer(handle->base, handle->t_state, buffer, sizeof(buffer));
+
+	UART_EnableTx(handle->base, true);
+	UART_EnableRx(handle->base, true);
+
+}
+
+void UART_userSend(uart_handle_config *handle, uint8_t *buffer, uint32_t length)
+{
+	xSemaphoreTake(handle->txSemaphore, 0);
+
+	handle->txTransfer.data = (uint8_t *)buffer;
+	handle->txTransfer.dataSize = (uint32_t)length;
+
+	/* Non-blocking call */
+	UART_TransferSendNonBlocking(handle->base, handle->t_state, &handle->txTransfer);
+
+	xEventGroupWaitBits(handle->txEvent, RTOS_UART_COMPLETE, pdTRUE, pdFALSE, portMAX_DELAY);
+
+	xSemaphoreGive(handle->txSemaphore);
+
+}
+
+void UART_userReceive(uart_handle_config *handle, const uint8_t *buffer, uint32_t length)
+{
+	xSemaphoreTake(handle->rxSemaphore, portMAX_DELAY);
+
+    handle->rxTransfer.data = buffer;
+    handle->rxTransfer.dataSize = (uint32_t)length;
+
+    /* Non-blocking call */
+    UART_TransferReceiveNonBlocking(handle->base, handle->t_state, &handle->rxTransfer, &length);
+
+    xEventGroupWaitBits(handle->rxEvent,
+                             RTOS_UART_COMPLETE,
+                             pdTRUE, pdFALSE, portMAX_DELAY);
+
+    /* Enable next transfer. Current one is finished */
+    xSemaphoreGive(handle->rxSemaphore);
+
+
+}
+
+
+
+
